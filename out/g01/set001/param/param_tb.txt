@@ -1,0 +1,17 @@
+
+-------------------------------------------------------------------------------
+             Parameter              Description                           Value
+-------------------------------------------------------------------------------
+   On-the-job training                                                         
+              $log(A)$             Productivity  -2.020, -2.130, -1.988, -1.729
+                $g(A)$      Productivity growth     -0.005, 0.001, 0.005, 0.009
+                \alpha                Curvature          0.47, 0.50, 0.49, 0.30
+                \delta             Depreciation          0.06, 0.05, 0.05, 0.06
+          Skill prices                                                         
+           $\rho_{HS}$  Substitution elasticity                            2.50
+           $\rho_{CG}$  Substitution elasticity                            7.94
+         $logWNodeHSD$        Skill price nodes                -0.25, ..., 0.16
+         $logWNodeHSG$        Skill price nodes               -0.01, ..., -0.00
+          $logWNodeCD$        Skill price nodes                0.25, ..., -0.22
+          $logWNodeCG$        Skill price nodes                0.64, ..., -0.24
+-------------------------------------------------------------------------------
