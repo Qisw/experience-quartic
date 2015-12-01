@@ -38,7 +38,7 @@ if 1
       for iBy = 1 : length(byShowV)
          hoursV = squeeze(loadS.hoursRaw_ascM(:, iSchool, byShowV(iBy))) .* cS.hoursScale;
          idxV = find(hoursV > 0);
-         yV = hpfilter(hoursV(idxV), cS.hpFilterHours);
+         yV = hpfilter(hoursV(idxV), cS.dataS.hpFilterHours);
          plot(idxV, yV, figS.lineStyleDenseV{iBy}, 'color', figS.colorM(iBy,:));
       end
 

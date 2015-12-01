@@ -17,8 +17,8 @@ ageMax = cS.quarticS.ageMax;
 % Get age effects and year effects
 profileV = qS.wrS.age_year_effects(cS.dbg);
 
-saveS.seHS = 4;
-saveS.seCG = 3;
+saveS.seHS = cS.quarticS.substElastInner;
+saveS.seCG = cS.quarticS.substElastOuter;
 
 
 

@@ -23,6 +23,10 @@ properties
    
    % Highest age to use
    ageMax
+   
+   % Substitution elasticities
+   substElastOuter
+   substElastInner
 end
 
 methods
@@ -34,6 +38,9 @@ methods
       qS.cohortEffects = EnumLH('schoolYears', {'none', 'schooling', 'schoolYears', 'dummies', 'expost'});
 
       qS.ageMax = 60;
+      
+      qS.substElastOuter = 3;
+      qS.substElastInner = 4;
    end
 end
    

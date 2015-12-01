@@ -35,39 +35,6 @@ varS = param_so1.var_numbers;
 size_ascV = [cS.demogS.ageRetire, cS.nSchool, cS.nCohorts];
 
 
-%%  IQ targets
-if cS.hasIQ == 1
-   error('not updated');
-   tgS.betaIQ = 0.104;
-   tgS.iqAge = cS.iqAge;
-   
-   % From NLSY
-   %  betaIQ by experience. 
-   iqS = output_so1.var_load(cS.vTgIq, cS);
-   % Max exper = 1.5 mean experience in sample
-   tgS.iqExperV = 1 : 18;
-   tgS.betaIqExperV = iqS.betaIQV(tgS.iqExperV);
-   
-   % Taubman wales: birth year and iq pct scores by [no college/college, cohort]
-   % Last column is NLSY
-%    tgS.twIqByV = [1925, 1929, 1934, 1946, 1950, 1957, 1960, 1961, 1960+18] - 18;
-%    tgS.twIqPctM = [53, 47; 56, 45;  58, 43;  63, 43;  61, 42; 62, 40;  63, 35;  62, 36;  63, 35]' ./ 100;
-      % update from JME +++++ currently eyeballed
-   tgS.twIqByV  = [1920,   1930,    1940,    1950,    1960,    1970,    1980];
-   tgS.twIqPctM = [61, 44; 63, 43;  64, 41;  64, 39;  63, 38;  61, 35;  59, 30]' ./ 100;
-
-   % Interpolate for birth cohorts used in model
-   tgS.iqPctM = zeros([2, cS.nCohorts]);
-   for i1 = 1 : 2
-      % Assume constant after last cohort
-      tgS.iqPctM(i1, :) = interp1([tgS.twIqByV, 2000], [tgS.twIqPctM(i1,:), tgS.twIqPctM(i1,end)], ...
-         cS.demogS.bYearV, 'linear');
-   end
-   if any(isnan(tgS.iqPctM(:)))
-      error('Interpolation failed');
-   end
-end   
-
 
 %% Schooling
 
@@ -181,7 +148,7 @@ tgS.nObs_tsyM(:,:,ny) = tgS.nObs_tsyM(:,:,ny-1);
 
 
 
-%%  Aggregate stats, using constant composition weights
+%%  Aggregate stats
 % All indexed by cS.wageYearV
 
 % Load cps weights, by [age, school]
@@ -193,62 +160,53 @@ for iSchool = 1 : cS.nSchool
 end
 
 
-if 1
-   % *****  Compute directly from cps
-   % Not constant composition +++++
-   loadS = output_so1.var_load(varS.vAggrCpsStats, cS);
+% *****  Compute directly from cps
+% Not constant composition
+loadS = output_so1.var_load(varS.vAggrCpsStats, cS);
 
-   % Mean / median log wage by [school, year]. 
-   if cS.useMedianWage == 1
-      tgS.logWage_stM = log_lh(loadS.wageMedian_stuM(:,:,cS.dataS.iuCpsEarn), cS.missVal);
-   else
-      tgS.logWage_stM = loadS.wageMeanLog_stuM(:,:,cS.dataS.iuCpsEarn);
-   end
-   
-   % Scale
-   tgS.logWage_stM = matrix_lh.m_oper(tgS.logWage_stM, tgS.logWageScaleFactor, '-', cS.missVal, cS.dbg);
-   
-   % Temporary fix +++++
-   tgS.logWage_stM(:, end) = tgS.logWage_stM(:, end-1);
-   
-   validateattributes(tgS.logWage_stM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', ...
-      '>', cS.missVal + 1,  'size', [cS.nSchool, length(cS.wageYearV)]})
-   
-   
-   % College premium
-   tgS.collPrem_tV = matrix_lh.m_oper(tgS.logWage_stM(cS.iCG, :)',  tgS.logWage_stM(cS.iHSG, :)',  '-',  ...
-      cS.missVal, cS.dbg);
-   
-
-   % College premium by [young/middle/old, year]
-   %  Log wage gap relative to HS
-   if cS.useMedianWage
-      logWage_ymo_stM = log_lh(loadS.wageMedian_ymo_stuM(:,:,:,cS.dataS.iuCpsEarn),  cS.missVal);
-   else
-      logWage_ymo_stM = loadS.wageMeanLog_ymo_stuM(:,:,:,cS.dataS.iuCpsEarn);
-   end
-   tgS.collPrem_YoungOldYearM = matrix_lh.m_oper(squeeze(logWage_ymo_stM(:, cS.iCG, :)),  squeeze(logWage_ymo_stM(:, cS.iHSG, :)), ...
-      '-', cS.missVal, cS.dbg);
-
-   
+% Mean / median log wage by [school, year]. 
+if cS.useMedianWage == 1
+   tgS.logWage_syM = log_lh(loadS.wageMedian_stuM(:,:,cS.dataS.iuCpsEarn), cS.missVal);
 else
-   error('Not updated');
-   % ***** Use age wage profiles used in model calibration
-   % This is not consistent when medians are used. They do not aggregate from cells
-   wageS = aggr_stats_from_cells_so1(tgS.logWage_tscM, tgS.aggrDataWt_tsM, cS);
-
-   tgS.logWage_stM = wageS.out_stM;
-   tgS.collPrem_YoungOldYearM = wageS.collPrem_YoungOldYearM;
-   tgS.collPrem_tV = wageS.collPrem_tV;
-
-   clear wageS;   
+    tgS.logWage_syM = loadS.wageMeanLog_stuM(:,:,cS.dataS.iuCpsEarn);
 end
 
+% Scale
+tgS.logWage_syM = matrix_lh.m_oper(tgS.logWage_syM, tgS.logWageScaleFactor, '-', cS.missVal, cS.dbg);
+
+% Temporary fix +++++
+tgS.logWage_syM(:, end) = tgS.logWage_syM(:, end-1);
+
+validateattributes(tgS.logWage_syM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', ...
+   '>', cS.missVal + 1,  'size', [cS.nSchool, length(cS.wageYearV)]})
+
+
+% College premium
+tgS.collPrem_tV = matrix_lh.m_oper(tgS.logWage_syM(cS.iCG,:)',  tgS.logWage_syM(cS.iHSG,:)',  '-',  ...
+   cS.missVal, cS.dbg);
+validateattributes(tgS.collPrem_tV, {'double'}, ...
+   {'finite', 'nonnan', 'nonempty', 'real', 'size', [length(cS.wageYearV), 1]})
+
+
+% College premium by [young/middle/old, year]
+%  Log wage gap relative to HS
+if cS.useMedianWage
+   logWage_ymo_stM = log_lh(loadS.wageMedian_ymo_stuM(:,:,:,cS.dataS.iuCpsEarn),  cS.missVal);
+else
+   logWage_ymo_stM = loadS.wageMeanLog_ymo_stuM(:,:,:,cS.dataS.iuCpsEarn);
+end
+tgS.collPrem_YoungOldYearM = matrix_lh.m_oper(squeeze(logWage_ymo_stM(:, cS.iCG, :)),  squeeze(logWage_ymo_stM(:, cS.iHSG, :)), ...
+   '-', cS.missVal, cS.dbg);
+
+   
+
 if cS.dbg > 10
-   validateattributes(tgS.logWage_stM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real'})
+   validateattributes(tgS.logWage_syM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real'})
    validateattributes(tgS.collPrem_YoungOldYearM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', ...
       'size', [3, length(cS.wageYearV)]})
 end
+
+
 
 
 %% Aggregate hours worked by [age, school, year]

@@ -9,7 +9,14 @@ in case it is started on server
 % Make sure the file name for the tex is local
 dirS = cS.dirS;
 varS = param_so1.var_numbers;
-fn = output_so1.var_fn(varS.vPreambleData, cS);
+
+if cS.isDataSetNo
+   preVarNo = varS.vDataPreamble;
+else
+   preVarNo = varS.vPreambleData;
+end
+
+fn = output_so1.var_fn(preVarNo, cS);
 
 m = load(fn);
 pS = m.pS;

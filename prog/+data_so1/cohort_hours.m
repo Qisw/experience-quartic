@@ -26,7 +26,7 @@ varS = param_so1.var_numbers;
 maxAge = cS.demogS.ageRetire;  
 
 % Smooth more strongly. We only want fairly low frequency movements
-hpFilterParam = cS.hpFilterHours;
+hpFilterParam = cS.dataS.hpFilterHours;
 
 % CPS hours, raw, by [by, school, phys age]
 % byLbV = cS.demogS.bYearLbV;

@@ -8,9 +8,6 @@ varS = param_so1.var_numbers;
 % Keep wage data for these ages
 dataAgeV = cS.demogS.age1 : cS.demogS.ageRetire;
 
-% Make earnings data accessible
-project_start('cpsearn');
-
 % Get cps setNo
 cpsS = const_cpsearn(1);
 cpsSetNo = cpsS.(cS.cpsSetNoStr);
@@ -53,6 +50,9 @@ end
 fltS.validate;
 
 output_cpsearn.var_save(fltS, cpsS.vFilterSettings, [], cpsSetNo);
+% Also save locally so it can be retrieved more easily
+var_save_so1(fltS, cS.varNoS.vCpsEarnFilter, cS);
+
 
 
 %% Settings for earnings profiles

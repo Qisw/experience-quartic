@@ -33,9 +33,6 @@ cS.setStr = 'default';
 % Version. To ensure that all results are consistent
 cS.version = 3;
 
-% Iteration history: max length
-cS.histMaxIter = 1e3;
-
 % Notation
 cS.symS = param_so1.symbols;
 % Variable numbers
@@ -67,9 +64,6 @@ cS.maxWage = 10;
 % for cps data routines (as string, b/c we don't know the number)
 cS.cpsSetNoStr = 'setExperDefault';
 
-% For NLSY data routines
-% cS.nlsySetNo = cS.nlsySetDefault;    % Default; all races
-
 % Min no of wage obs to keep a cell
 cS.minWageObs = 50;
 
@@ -79,15 +73,12 @@ cS.hourlyWages = 53;
 cS.weeklyWages = 33;
 cS.wagePeriod = cS.weeklyWages;
 
-% HP filter param for hours
-%  make sure this is used in cps +++
-cS.hpFilterHours = 20;
 
 
 %% Default: Demographics
 % Named choices go here. The actual parameter are derived later
 
-cS.demogSettingS.cohDefStr = EnumLH('annual', {'annual', 'default', 'quartic', 'bowlus', 'long'});
+cS.demogSettingS.cohDefStr = EnumLH('quartic', {'annual', 'default', 'quartic', 'bowlus', 'long'});
 
 
 %% Default: What is calibrated
@@ -98,43 +89,6 @@ cS.doCalV = cS.calBase;
 % Substitution elasticities
 cS.calWhatS.substElast = true;
 
-
-%%  Default model parameters
-
-% Perturb guesses? For testing convergence
-cS.perturbGuesses = 0;
-
-
-% ******  OJT
-
-% if 1: alpha(HSD) = alpha(HSG)  and alpha(CD) = alpha(CG)
-% if 2: all alphas are the same
-cS.twoAlphas = 1;
-cS.oneAlpha  = 2;
-cS.sameAlpha = 0;
-
-% Fix mean alpha? When calibrated
-   % Check code when this is enabled +++
-cS.fixMeanAlpha = 0;
-cS.meanAlpha = 0.5;
-
-
-% 1: Restrict deltas to be the same for dropouts and grads
-% 2: All ddh are the same
-cS.twoDdh   = 1;
-cS.oneDdh   = 2;
-cS.sameDdh  = 0;
-
-
-% Truncate h at this value
-cS.hMax = 40;
-
-
-% ****** Skill prices
-
-% Fix growth of college premium?
-cS.fixGCollPrem = 0;
-cS.gCollPrem = 0;
 
 
 
@@ -160,7 +114,7 @@ cS.dataSetNo = cS.setS.dataSetNo;
 % Only here are actual parameter set. Before we just choose named settings
 
 % Also defines what is calibrated / fixed
-cS.pvector = param_so1.pvector_default(cS);
+% cS.pvector = param_so1.pvector_default(cS);
 
 % Demographics
 workStartAge_sV = [18, 19, 21, 23]';
@@ -172,8 +126,6 @@ cS.dirS = param_so1.directories([], cS.gNo, cS.setNo);
 
 cS.nCohorts = cS.demogS.nCohorts;
 
-% Last age at which positive OJT is allowed
-cS.lastOjtAge = cS.demogS.ageRetire - 1;
 % Age in year of birth
 cS.ageInBirthYear = cS.demogS.ageInBirthYear;
 
@@ -183,15 +135,6 @@ if cS.useMedianWage == 1
 else
    cS.wageStr = 'Mean log wage';
 end
-
-% if cS.hasIQ == 0
-%    % No IQ targets => fix iq related parameters
-%    cS.pvector.calibrate('stdIq', cS.calNever);
-%    cS.pvector.calibrate('wtIQa', cS.calNever);
-%    cS.calS.tgIq = 0;
-%    cS.tgBetaIq = 0;
-%    cS.calS.tgBetaIqExper = 0;
-% end
 
 % Scale factors for hours and wages
 if cS.wagePeriod == cS.hourlyWages
@@ -207,57 +150,6 @@ else
 end
 
    
-
-
-% *****  Skill price related constants
-% Requires demographics to be set
-% Modifies pvector
-
-cS = param_so1.skill_price_const(cS);
-
-
-
-if cS.sameAlpha == cS.twoAlphas
-   % Only 2 alphas are calibrated
-   cS.calAlphaV([cS.schoolHSD, cS.schoolCD]) = 0;
-elseif cS.sameAlpha == cS.oneAlpha
-   % Only 1 alpha is calibrated
-   cS.calAlphaV = zeros([cS.nSchool, 1]);
-   cS.calAlphaV(1) = 1;
-end
-if cS.sameDdh == cS.twoDdh
-   % Only 2 deltas are calibrated
-   cS.calDdhV([cS.schoolHSD, cS.schoolCD]) = 0;
-elseif cS.sameDdh == cS.oneDdh
-   % All ddh are the same
-   cS.calDdhV = zeros([cS.nSchool,1]);
-   cS.calDdhV(1) = 1;
-end
-
-% Alpha on a grid?
-if cS.fixMeanAlpha == 1
-   % Only calibrate 1st (n-1) alphas
-   cS.calAlphaV = ones([cS.nSchool, 1]);
-   iFix = cS.nSchool;
-   cS.calAlphaV(iFix) = 0;
-      
-   % Set bounds to ensure that mean alpha can be attained
-   cS.alphaMinV = max(cS.alphaMin, (cS.nSchool * cS.meanAlpha - cS.alphaMax) / (cS.nSchool-1)) .* ones([cS.nSchool, 1]);   
-   cS.alphaMaxV = min(cS.alphaMax, (cS.nSchool * cS.meanAlpha - cS.alphaMin) / (cS.nSchool-1)) .* ones([cS.nSchool, 1]);
-end
-
-% % Alpha bounds must have positive width
-% cS.alphaMaxV = max(cS.alphaMaxV,  cS.alphaMinV + 0.01);
-
-
-% Skill prices
-if cS.fixGCollPrem == 1
-   cS.calSpGrowthV(cS.schoolCG) = 0;
-   cS.spGrowthV(cS.schoolCG) = cS.spGrowthV(cS.schoolHSG) + cS.gCollPrem;
-end
-
-
-
 % Self-test
 if cS.dbg > 10
    param_so1.const_check(cS);

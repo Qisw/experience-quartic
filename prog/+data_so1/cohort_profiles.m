@@ -2,6 +2,7 @@ function cohort_profiles(gNo)
 % Save cohort wage profiles
 %{
 Wages are in data units
+This simply copies variables for the right universe of persons out of cpsearn files.
 
 Median wage = [median earnings incl zeros] / [mean hours]
 

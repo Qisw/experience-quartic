@@ -100,18 +100,6 @@
 
 \begin_layout Title
 Accounting for Changing Returns to Experience
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-For helpful comments I thank Shouyong Shi and seminar participants at the
- University of Houston and University of Toronto.
- The usual disclaimer applies.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Author
@@ -183,6 +171,13 @@ Key words: Education.
 
 \begin_layout Section
 Introduction
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Introduction"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -291,11 +286,294 @@ Offer an alternative view: cohort effects.
 \end_layout
 
 \begin_layout Standard
-Consider a simple model with only standard ingredients:
+Motivation is 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:WageGrowthExperAggr"
+
+\end_inset
+
+.
+ This shows experience wage growth for men, ages +++ to +++, from CPS data.
+ By schooling.
+\end_layout
+
+\begin_layout Standard
+It also shows changes in log median wages over the same years.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Data"
+
+\end_inset
+
+ explains how these figures are constructed.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Experience wage growth
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:WageGrowthExperAggr"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HSD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_growth_exper_aggr_s1.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HSG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_growth_exper_aggr_s2.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_growth_exper_aggr_s3.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_growth_exper_aggr_s4.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For all school groups, returns to experience exhibit a U shape with a minimum
+ in the 1950s.
+\end_layout
+
+\begin_layout Standard
+Key point: Aggregate wage growth as a cohort ages obeys very similar patterns.
+ 
+\end_layout
+
+\begin_layout Standard
+Implication: when it comes to accounting for longitudinal changes in returns
+ to experience, there is no need for time-varying age-efficiency profiles.
+\end_layout
+
+\begin_layout Standard
+To make this precise,
+\end_layout
+
+\begin_layout Standard
+suppose that wage is given by 
+\begin_inset Formula $\wage_{\age,\sIndex,\pYear}=\sPrice_{\sIndex,\pYear}h_{\age,\sIndex}\cohortQuality_{\sIndex,\bYear}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\sPrice$
+\end_inset
+
+ is a skill price, 
+\begin_inset Formula $h$
+\end_inset
+
+ denotes the age efficiency profile, and 
+\begin_inset Formula $\cohortQuality$
+\end_inset
+
+ is a cohort effect.
+\end_layout
+
+\begin_layout Standard
+Then wage growth over the life-cycle is given by 
+\begin_inset Formula $\Delta_{\age}\ln\wage_{\age,\sIndex,\pYear}=\Delta_{t}\ln\sPrice_{\sIndex,\pYear}+\Delta_{\age}h_{\age,\sIndex}$
+\end_inset
+
+.
+ [not great notation]
+\end_layout
+
+\begin_layout Standard
+Assuming that skill prices are approximately proportional to aggregate wages,
+ the lines shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:WageGrowthExperAggr"
+
+\end_inset
+
+ should be parallel, tracing out skill price growth over a cohort's life-cycle.
+ The gap equals efficiency growth as a cohort ages.
+\end_layout
+
+\begin_layout Standard
+This motivates the question posed in the paper: How far can I go towards
+ understanding the facts highlighted in the literature in a model with 
+\begin_inset Quotes eld
+\end_inset
+
+standard
+\begin_inset Quotes erd
+\end_inset
+
+ ingredients, including constant age efficiency profiles?
+\end_layout
+
+\begin_layout Standard
+Specifically, the model studied consists of the following ingredients, all
+ of which are well known from the literature:
 \end_layout
 
 \begin_layout Enumerate
-Constant skill biased technical change similar to 
+Fixed experience efficiency profiles
+\end_layout
+
+\begin_layout Enumerate
+An aggregate production function with constant skill biased technical change
+ similar to 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "KatzMurphy1992"
@@ -303,10 +581,6 @@ key "KatzMurphy1992"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Enumerate
-Fixed experience efficiency profiles
 \end_layout
 
 \begin_layout Enumerate
@@ -323,31 +597,250 @@ key "LHAbil"
 \begin_layout Standard
 Show that this model goes a long way towards accounting for the observations
  highlighted in the literature.
-\end_layout
+\begin_inset Foot
+status collapsed
 
-\begin_layout Paragraph
-Related Literature:
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "guvenen2010nber"
+\begin_layout Plain Layout
+The programs and detailed results are available at 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/hendri54/experience-quartic"
 
 \end_inset
 
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The remainder of the paper is organized as follows.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Data"
+
+\end_inset
+
+ describes the data construction.
+ The model is described in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Model"
+
+\end_inset
+
+ and estimated in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Calibration"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Results"
+
+\end_inset
+
+ investigates how well the model accounts for the observations highlighted
+ in the literature.
+\end_layout
+
+\begin_layout Section
+Data
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Data"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This section: explain data construction.
+\end_layout
+
+\begin_layout Standard
+Individual level data on schooling and earnings are taken from the March
+ CPS files for 
+\begin_inset Formula $\dataYearOne-\dataYearLast$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ipums_cps"
+
+\end_inset
+
+.
+ Earnings are observed for the previous calendar year.
  
 \end_layout
 
 \begin_layout Standard
+The count sample contains men born between 
+\begin_inset Formula $\bYearFirst$
+\end_inset
+
+ and 
+\begin_inset Formula $\bYearLast$
+\end_inset
+
+ who report valid schooling.
+\end_layout
+
+\begin_layout Standard
+The wage sample contains those who work a positive number of hours and who
+ report non-zero earnings.
+ The wage concept is labor earnings plus 
+\begin_inset Formula $\fracBusInc\%$
+\end_inset
+
+ of self-employment income divided by weeks worked.
+\end_layout
+
+\begin_layout Standard
+Robustness analysis: only include working for wages; not shown.
+ Results similar (gNo 7?).
+ See github.
+\end_layout
+
+\begin_layout Standard
+Details of the CPS data are described in 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "Jeong2012"
+key "LH_cps"
 
 \end_inset
 
- account for changing experience wage profiles based on changing relative
- prices of experience and raw labor.
+.
+ Summary statistics are shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:CPSsummary"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Summary statistics for CPS data
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:CPSsummary"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/lutz/Documents/econ/hc/school_ojt/so1/out/g01/set901/cps_tb.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For each year, I calculate 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $N_{\age,s,\pYear}$
+\end_inset
+
+: the mass of persons in each (age, school, year) cell;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\aggrHours_{\age,s,\pYear}$
+\end_inset
+
+: total hours worked in each cell.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\wage_{\age,s,\pYear}$
+\end_inset
+
+: median wage.
+\end_layout
+
+\begin_layout Standard
+School categories: high school dropouts (HSD), high school graduates (HSG),
+ college dropouts (CD), and college graduates (CG).
+\end_layout
+
+\begin_layout Standard
+Cohort wage profiles are simply 
+\begin_inset Formula $\wage_{\age,s,\pYear}$
+\end_inset
+
+ collected for each birth cohort.
+ Only partial profiles are observed for most cohorts.
+\end_layout
+
+\begin_layout Standard
+Each cohort's average years of schooling is calculated by averaging over
+ the age range 
+\begin_inset Formula $\schoolAgeRangeOne-\schoolAgeRangeLast$
+\end_inset
+
+.
+ Not all ages are observed for all cohorts.
+\end_layout
+
+\begin_layout Standard
+Do not show data features at this point.
+ Defer discussion to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Results"
+
+\end_inset
+
+ where I compare model and data.
+ Additional detail in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Data-Details"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -361,6 +854,39 @@ name "sec:Model"
 
 \end_layout
 
+\begin_layout Standard
+The model has 3 standard ingredients:
+\end_layout
+
+\begin_layout Enumerate
+A nested CES aggregate production function with constant skill-biased technical
+ change.
+ A minor extension of 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "KatzMurphy1992"
+
+\end_inset
+
+, who consider only 2 school classes.
+\end_layout
+
+\begin_layout Enumerate
+Time invariant age-efficiency profiles 
+\begin_inset Formula $h_{\age,s}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Cohort qualities 
+\begin_inset Formula $\cohortQuality_{\sIndex,\bYear}$
+\end_inset
+
+ that are a function of the cohorts average years of schooling
+\end_layout
+
 \begin_layout Paragraph
 Aggregate production function:
 \end_layout
@@ -369,7 +895,7 @@ Aggregate production function:
 Output is produced from human capital augmented labor according to
 \begin_inset Formula 
 \begin{equation}
-\aggrOutput_{\pYear}=\neutralProd_{\pYear}\left[G_{\pYear}^{\rho_{CG}}+(\skillWeight_{CG,\pYear}L_{CG,\pYear})^{\rho_{CG}}\right]^{1/\rho_{CG}}\label{eq:AggrProdFct}
+\aggrOutput_{\pYear}=\neutralProd_{\pYear}\left[G_{\pYear}^{\rho_{CG}}+(\skillWeight_{CG,\pYear}\lSupply_{CG,\pYear})^{\rho_{CG}}\right]^{1/\rho_{CG}}\label{eq:AggrProdFct}
 \end{equation}
 
 \end_inset
@@ -377,17 +903,38 @@ Output is produced from human capital augmented labor according to
 where
 \begin_inset Formula 
 \begin{equation}
-G_{\tau}=\left[\sum_{s=HSD}^{CD}(\skillWeight_{s,\pYear}L_{s,\pYear})^{\rho_{HS}}\right]^{1/\rho_{HS}}
+G_{\tau}=\left[\sum_{s=HSD}^{CD}(\skillWeight_{s,\pYear}\lSupply_{s,\pYear})^{\rho_{HS}}\right]^{1/\rho_{HS}}
 \end{equation}
 
 \end_inset
 
-is a CES aggregator for unskilled labor (with less than a college degree).
+is a CES aggregator for unskilled labor (with less than a college degree)
+ and 
+\begin_inset Formula $\lSupply$
+\end_inset
+
+ denotes labor input in efficiency units.
  
 \end_layout
 
 \begin_layout Standard
-Constant skill-biased technical change:
+The motivation for separating out college graduates is the large rise in
+ the median wage earned by college graduates relative to each of the other
+ groups (see 
+\begin_inset CommandInset citation
+LatexCommand citealt
+key "KatzMurphy1992"
+
+\end_inset
+
+ and more recently 
+\begin_inset CommandInset citation
+LatexCommand citealt
+key "AutorKK2008"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -405,63 +952,147 @@ key "KatzMurphy1992"
  are assumed to grow at constant rates.
 \end_layout
 
-\begin_layout Subsection
-Equilibrium
+\begin_layout Standard
+\begin_inset Formula $\ln\skillWeight_{\sIndex,\pYear}-\ln\skillWeight_{HSG,\pYear}=\muIntercept_{\sIndex}+\grRate\left(\skillWeight_{\sIndex}\right)\left(\pYear-\wageYearOne\right)$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-A competitive equilibrium consists of an allocation 
-\begin_inset Formula $\left\{ h_{\age,s,\bYear},l_{\age,s,\bYear}\right\} $
-\end_inset
-
- and skill prices 
-\begin_inset Formula $\left\{ w_{s,\pYear}\right\} $
-\end_inset
-
- that satisfy:
+Normalize skill weights to sum to 1.
 \end_layout
 
-\begin_layout Enumerate
-Skill prices equal marginal products (see 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:SpMp"
+\begin_layout Standard
+No restrictions on the evolution of neutral productivities 
+\begin_inset Formula $\neutralProd_{\pYear}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Labor inputs:
+\end_layout
+
+\begin_layout Standard
+Labor inputs in efficiency units are given by 
+\begin_inset Formula 
+\begin{equation}
+\lSupply_{s,\pYear}=\sum_{\age=\ageWorkStart_{s}}^{\lifeSpan}\aggrHours_{\age,\sIndex,\pYear}h_{\age,s}\cohortQuality_{\sIndex,\bYear}\label{eq:LaborMarket}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, it is assumed that persons in school group 
+\begin_inset Formula $\sIndex$
+\end_inset
+
+ work from age 
+\begin_inset Formula $\ageWorkStart_{\sIndex}$
+\end_inset
+
+ to 
+\begin_inset Formula $\lifeSpan$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Hours worked 
+\begin_inset Formula $\aggrHours_{\age,\sIndex,\pYear}$
+\end_inset
+
+ and age efficiency profiles 
+\begin_inset Formula $h_{\age,\sIndex}$
+\end_inset
+
+ are taken as exogenous.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Wages:
+\end_layout
+
+\begin_layout Standard
+Skill prices equal marginal products: 
+\begin_inset Formula 
+\begin{equation}
+\sPrice_{\sIndex,\pYear}=\frac{\partial\aggrOutput_{\sIndex,\pYear}}{\partial\lSupply_{\sIndex,\pYear}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Observed wages equal skill prices times labor efficiency:
+\begin_inset Formula 
+\begin{equation}
+\wage_{\age,\sIndex,\pYear}=\sPrice_{\sIndex,\pYear}h_{\age,\sIndex}\cohortQuality_{\sIndex,\bYear}\label{eq:Wage}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Cohort quality:
+\end_layout
+
+\begin_layout Standard
+Assume that cohort quality is quadratic in average years of schooling: 
+\begin_inset Formula 
+\begin{align}
+\cohortQuality_{\sIndex,\bYear} & =\cohQualFct\left(\cohSchool_{\bYear};\sIndex\right)\\
+ & =\cqBeta_{\sIndex,0}+\cqBeta_{\sIndex,1}\cohSchool_{\bYear}+\cqBeta_{\sIndex,2}\cohSchool_{\bYear}^{2}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The motivation is that expanding schooling is associated with declining
+ average abilities of all school groups (see 
+\begin_inset CommandInset citation
+LatexCommand citealt
+key "LHAbil"
 
 \end_inset
 
 ).
 \end_layout
 
-\begin_layout Enumerate
-Given skill prices, households optimally choose on-the-job training to solve
+\begin_layout Standard
+Important for identification: no time trend in cohort quality.
+ This is what allows the model to decompose wage growth into the contributions
+ of skill price growth and human capital growth.
  
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:HhValue"
-
-\end_inset
-
-.
 \end_layout
 
-\begin_layout Enumerate
-Labor markets clear: 
-\begin_inset Formula 
-\begin{equation}
-\lSupply_{s,\pYear}=\sum_{\age=\ageWorkStart_{s}}^{\lifeSpan}N_{s,\bYear}h_{\age,s,\bYear}\left(\tEndow_{\age,s,\bYear}-l_{\age,s,\bYear}\right)\label{eq:LaborMarket}
-\end{equation}
+\begin_layout Standard
+Note, however, that an observationally equivalent model would feature trend
+ growth in cohort qualities and suitably adjusted trend growth rates of
+ skill prices and experience efficiency growth.
+\end_layout
 
-\end_inset
-
- where it is understood that the cohort subscript refers to 
-\begin_inset Formula $\bYear\left(\age,\pYear\right)$
-\end_inset
-
-.
+\begin_layout Standard
+The point: while the model generates estimates of all parameters, its implicatio
+ns for skill price and human capital growth should be interpreted with caution.
 \end_layout
 
 \begin_layout Section
-Data and Calibration
+Estimation
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Calibration"
@@ -471,113 +1102,55 @@ name "sec:Calibration"
 
 \end_layout
 
-\begin_layout Subsection
-Data Moments
-\end_layout
-
 \begin_layout Standard
-The data moments used in the calibration are constructed from the March
- CPS files for 
-\begin_inset Formula $\dataYearOne-\dataYearLast$
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "ipums_cps"
-
-\end_inset
-
-.
- The sample contains men born between 
-\begin_inset Formula $\bYearFirst$
-\end_inset
-
- and 
-\begin_inset Formula $\bYearLast$
-\end_inset
-
-.
- For each year, I calculate 
+The following parameters are estimated jointly:
 \end_layout
 
-\begin_layout Enumerate
-\begin_inset Formula $\hat{N}_{\age,s,\pYear}$
-\end_inset
-
-: the mass of persons in each (age, school) cell;
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $\hat{\tEndow}_{\age,s,\pYear}$
-\end_inset
-
-: mean hours worked in each cell.
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $\hat{\wage}_{\age,s,\pYear}$
-\end_inset
-
-: median wage.
-\end_layout
-
-\begin_layout Standard
-Details of the CPS data are described in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:AppCPS"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-The age wage profiles implied by the 
-\begin_inset Formula $\hat{\wage}$
-\end_inset
-
- series form the calibration targets (details below).
-\end_layout
-
-\begin_layout Standard
-Hours worked are used to set the model time endowments.
- This is done as follows +++
-\end_layout
-
-\begin_layout Standard
-Fit a quartic to all hours data.
- Impose the same profile on all cohorts.
-\end_layout
-
-\begin_layout Subsection
-Calibration Algorithm
-\begin_inset CommandInset label
-LatexCommand label
-name "sub:CalibratedParams"
-
+\begin_layout Itemize
+neutral productivities 
+\begin_inset Formula $\neutralProd_{\pYear}$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The following parameters are calibrated jointly:
 \end_layout
 
 \begin_layout Itemize
 skill weights: 
-\begin_inset Formula $\omega_{s,\pYear}$
+\begin_inset Formula $\muIntercept_{\sIndex}$
 \end_inset
 
- 
+, 
+\begin_inset Formula $\grRate\left(\skillWeight_{\sIndex}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $h_{\age,\sIndex}$
+\end_inset
+
+: dummies
+\end_layout
+
+\begin_layout Itemize
+parameters of cohort quality function: 
+\begin_inset Formula $\cqBeta_{\sIndex,j}$
+\end_inset
+
+ for 
+\begin_inset Formula $j=0,1,2$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-The strategy: Compute the equilibrium for each set of parameters.
- Find the parameters that minimize the sum of squared deviations between
+The strategy: 
+\end_layout
+
+\begin_layout Standard
+Find the parameters that minimize the sum of squared deviations between
  log model wages (see 
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -592,7 +1165,7 @@ reference "eq:Wage"
 Objective is
 \begin_inset Formula 
 \begin{equation}
-D=\sum_{\age=\wageAgeRangeOne}^{\wageAgeRangeLast}\sum_{s=1}^{S}\sum_{\bYear=\bYearFirst}^{\bYearLast}\pWeight_{\age,s,\bYear}\left[\ln\wage_{\age,s,\bYear}-\ln\hat{\wage}_{\age,s,\bYear}\right]^{2}
+D=\sum_{s=1}^{S}\sum_{\age=\age_{s}}^{\qAgeMax}\sum_{\bYear=\bYearFirst}^{\bYearLast}\pWeight_{\age,s,\bYear}\left[\ln\wage_{\age,s,\bYear}-\ln\hat{\wage}_{\age,s,\bYear}\right]^{2}
 \end{equation}
 
 \end_inset
@@ -617,77 +1190,59 @@ weighted by the square root of the number of observations in each data cell
 .
 \end_layout
 
-\begin_layout Subsubsection
-Skill prices
+\begin_layout Standard
+Total number of parameters: +++
 \end_layout
 
 \begin_layout Standard
-As described, the solution would be computationally costly.
+Number of data moments: +++ [here is where one would really like to go quartic
+ +++]
+\end_layout
+
+\begin_layout Standard
+In practice, I do something simpler.
+\end_layout
+
+\begin_layout Enumerate
+Regress log median wages in each [age, school, year] cell on age dummies
  
-\end_layout
-
-\begin_layout Standard
-Solving the household problem requires skill prices, but deriving skill
- prices from the model parameters requires a solution to the household problem.
- Thus, a fixed point problem would have to be solved for each set of parameters.
-\end_layout
-
-\begin_layout Standard
-To reduce the computational cost, the algorithm searches over time paths
- for skill prices instead of skill weights.
-\end_layout
-
-\begin_layout Standard
-Since skill prices are a smooth function of time, they can be approximated
- efficiently by a cubic spline with 
-\begin_inset Formula $\nSpNodes$
+\begin_inset Formula $\left(\ln h_{\age,\sIndex}\right)$
 \end_inset
 
- nodes for each school group.
- 
-\end_layout
-
-\begin_layout Standard
-The algorithm then searches for the parameter values that minimizes 
-\begin_inset Formula $D+P$
+, time dummies 
+\begin_inset Formula $\left(\ln\sPrice_{\sIndex,\pYear}\right)$
 \end_inset
 
-, where 
-\begin_inset Formula $P$
+, and a quadratic in cohort schooling 
+\begin_inset Formula $\left(\ln\cohortQuality_{\sIndex,\bYear}\right)$
 \end_inset
 
- penalizes skill price paths that are not consistent with constant skill-biased
- technical change.
- 
+.
+ Separately for each school group.
 \end_layout
 
-\begin_layout Standard
-Specifically, recover skill weights from aggregate labor supplies and skill
- prices using the aggregate production function 
+\begin_layout Enumerate
+Construct aggregate labor supplies from 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:AggrProdFct"
+reference "eq:LaborMarket"
 
 \end_inset
 
 .
- Construct the penalty function 
-\begin_inset Formula 
-\begin{equation}
-P=\sum_{s}\sum_{\pYear}resid_{s,\pYear}^{2}
-\end{equation}
+\end_layout
+
+\begin_layout Enumerate
+Recover skill weights from 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Wage"
 
 \end_inset
 
-where 
-\begin_inset Formula $resid_{s,\pYear}$
-\end_inset
-
- is the residual of an OLS regression of 
-\begin_inset Formula $\ln\skillPrice_{s,\pYear}-\ln\skillPrice_{HSG,\pYear}$
-\end_inset
-
- on a constant time trend.
+ and verify that they are consistent with constant skill-biased technical
+ change.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -695,12 +1250,6 @@ Estimation Results
 \end_layout
 
 \begin_layout Standard
-Keep in mind that linear trends in age-efficiency profiles, cohort effects,
- skill weights, and skill prices are not identified.
-\end_layout
-
-\begin_layout Standard
-Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Age-efficiency-profiles"
@@ -734,8 +1283,75 @@ reference "fig:SkillWeightsRelative"
 \end_inset
 
  shows skill weights relative to HSG.
- Consistent with a constant time trend, except for HSD, where the trend
- growth rate increases after 1990.
+ 
+\end_layout
+
+\begin_layout Standard
+Simply fix the substitution elasticities at 
+\begin_inset Formula $\substElastInner$
+\end_inset
+
+ for the inner aggregator 
+\begin_inset Formula $G$
+\end_inset
+
+ and at 
+\begin_inset Formula $\substElastOuter$
+\end_inset
+
+ for the outer aggregator of the aggregate production function 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:AggrProdFct"
+
+\end_inset
+
+.
+ The values are arbitrary, but not important.
+ All that is to be shown: implied skill weights are consistent with constant
+ relative growth rates.
+\end_layout
+
+\begin_layout Standard
+This is clearly the case, except for HSD, where the trend growth rate increases
+ after 1990.
+\end_layout
+
+\begin_layout Standard
+How worried should one be about the poor fit for HSD?
+\end_layout
+
+\begin_layout Standard
+Expect fit to be poorest for a number of reasons.
+ 
+\end_layout
+
+\begin_layout Standard
+The fraction of HSD drops to around 10%.
+ Possible that some dropouts lack basic skills that exclude them from labor
+ market.
+\end_layout
+
+\begin_layout Standard
+Serious concern about selection into work.
+ Small samples.
+\end_layout
+
+\begin_layout Standard
+Keep in mind that linear trends in age-efficiency profiles, cohort effects,
+ skill weights, and skill prices are only identified because I assume that
+ cohort quality is a function of cohort schooling.
+\end_layout
+
+\begin_layout Standard
+Additional detail shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Estimation-Results"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1119,38 +1735,24 @@ ion.
 Returns to Experience
 \end_layout
 
+\begin_layout Subsubsection
+Longitudinal Returns to Experience
+\end_layout
+
 \begin_layout Standard
-To see changes in shapes more clearly, 
+Consider first longitudinal returns to experience.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:CohortWageGrowth"
 
 \end_inset
 
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:CohortWageIntercept"
-
-\end_inset
-
-
+ shows change in log wage as each cohort ages (from age +++ to age +++).
 \end_layout
 
 \begin_layout Standard
-show intercepts and slopes of cohort specific profiles.
- For all school groups, slopes have a U shape with min near 1950 birth cohort.
- Intercepts decline over most of the period.
-\end_layout
-
-\begin_layout Standard
-Intercepts and slopes are inversely related.
- During the expansion of U.S.
- education up to the cohorts born in the early 1950s, all wage profiles
- became flatter over time, while their intercepts increased.
- After the early 1950s birth cohorts, U.S.
- education growth essentially stopped.
- During this period, wage profiles became steeper with lower intercepts.
+For all school groups, slopes have a U shape with min in 1950-55 birth cohorts.
  
 \end_layout
 
@@ -1164,7 +1766,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cohort Returnts to Experience
+Cohort Returns to Experience
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:CohortWageGrowth"
@@ -1317,6 +1919,28 @@ CG
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CohortWageIntercept"
+
+\end_inset
+
+ shows the intercepts of the longitudinal wage profiles (log wages at age
+ +++).
+\end_layout
+
+\begin_layout Standard
+Intercepts and slopes are inversely related.
+ During the expansion of U.S.
+ education up to the cohorts born in the early 1950s, all wage profiles
+ became flatter over time, while their intercepts increased.
+ After the early 1950s birth cohorts, U.S.
+ education growth essentially stopped.
+ During this period, wage profiles became steeper with lower intercepts.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -1326,7 +1950,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cohort Returnts to Experience
+Cohort Wage Intercepts
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:CohortWageIntercept"
@@ -1479,6 +2103,104 @@ CG
 \end_layout
 
 \begin_layout Standard
+The model replicates both patterns.
+\end_layout
+
+\begin_layout Standard
+How the model accounts for time-varying returns to experience is clear from
+ the 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:Introduction"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Wage growth over a cohort's life-cycle has 2 parts:
+\end_layout
+
+\begin_layout Enumerate
+change in 
+\begin_inset Formula $h_{\age,\sIndex}$
+\end_inset
+
+ - the same for all cohorts
+\end_layout
+
+\begin_layout Enumerate
+changes in skill prices as the cohort ages - this is 
+\emph on
+the only
+\emph default
+ source of variation in longitudinal returns to experience in this model.
+\end_layout
+
+\begin_layout Standard
+As 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:WageGrowthExperAggr"
+
+\end_inset
+
+ shows, changes in skill prices and returns to experience comove closely.
+ The model implies skill prices that evolve very similarly to median log
+ wages (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SkillPriceWage"
+
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Estimation-Results"
+
+\end_inset
+
+).
+ It follows that returns to experience in the model closely track those
+ in the data.
+\end_layout
+
+\begin_layout Standard
+The implication is fundamental: 
+\emph on
+changes in skill price growth rates over time are sufficient to account
+ for time-varying returns to experience
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Viewed from this perspective, time varying longitudinal returns to experience
+ are not a puzzle
+\end_layout
+
+\begin_layout Standard
+they do not require time-varying age-efficiency profiles or time-varying
+ relative prices of experience, which is what the literature has emphasized
+ (see the references cited in the 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:Introduction"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+Cross-sectional Returns to Experience
+\end_layout
+
+\begin_layout Standard
 Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1490,7 +2212,29 @@ reference "fig:CsReturnExper"
 \end_layout
 
 \begin_layout Standard
-Broad features of the data are replicated, though not high frequency movements.
+In this model, these are simply differences in cohort qualities
+\end_layout
+
+\begin_layout Standard
+Cross-sectional return = 
+\begin_inset Formula $\Delta_{\age}\ln h_{\age,\sIndex}+\Delta_{\bYear}\ln\cohortQuality_{\sIndex,\bYear}$
+\end_inset
+
+ where the first difference is taken over ages (time-invariant) and the
+ second is taken over the associated birth years (time varying).
+\end_layout
+
+\begin_layout Standard
+The model's ability to replicate the observed time variation in returns
+ is mixed.
+ For high school dropouts, the model is essentially unsuccessful.
+ The general theme: the model does not work that well for this group.
+\end_layout
+
+\begin_layout Standard
+For other groups, the model replicates low-frequency movements, but amplitudes
+ are somewhat smaller than in the data.
+ This is perhaps to be expected from a very simple model of cohort qualities.
 \end_layout
 
 \begin_layout Standard
@@ -1660,18 +2404,14 @@ The College Wage Premium
 \end_layout
 
 \begin_layout Standard
-Model not only replicates aggregate college premium, but also evolution
- by age.
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "CardLemieux2001"
 
 \end_inset
 
- document differential evolution for young workers (ages 
+ document differential evolution of the college wage premium for young workers
+ (ages 
 \begin_inset Formula $\ageRangeYoung$
 \end_inset
 
@@ -1683,8 +2423,28 @@ key "CardLemieux2001"
 \end_layout
 
 \begin_layout Standard
-without imperfect substitution or changing relative prices of different
- labor types supplied by each worker in different proportions.
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "fig:College-Wage-Premium"
+
+\end_inset
+
+ shows the time path for the college wage premium, defined as the log median
+ wage of college graduates versus high school graduates.
+\end_layout
+
+\begin_layout Standard
+Shown for young, old, and middle aged workers.
+\end_layout
+
+\begin_layout Standard
+For young workers, the college premium declines until 1980 and then rises
+ sharply until the end of the sample period.
+ 
+\end_layout
+
+\begin_layout Standard
+For old workers, the increase starts earlier and is smaller overall.
 \end_layout
 
 \begin_layout Standard
@@ -1795,7 +2555,7 @@ Older workers
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename PaperFigures/collprem_young.pdf
+	filename PaperFigures/collprem_old.pdf
 	width 33text%
 	groupId threeAcross
 
@@ -1814,6 +2574,77 @@ Older workers
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "CardLemieux2001"
+
+\end_inset
+
+ suggest imperfect substitution of age groups as a potential explanation.
+ 
+\end_layout
+
+\begin_layout Standard
+Related idea: 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Jeong2012"
+
+\end_inset
+
+ where workers supply raw labor and experience.
+ Older workers supply relatively more experience.
+ Over time, the relative price of experience changes.
+\end_layout
+
+\begin_layout Standard
+Here: an alternative interpretation.
+ Cohort qualities change over time.
+\end_layout
+
+\begin_layout Standard
+How does it work?
+\end_layout
+
+\begin_layout Standard
+Cross-sectional college premium is 
+\begin_inset Formula $\Delta_{s}\sPrice_{\sIndex,\pYear}+\Delta_{s}\ln\cohortQuality_{\sIndex,\bYear}$
+\end_inset
+
+ where it is understood that 
+\begin_inset Formula $\bYear$
+\end_inset
+
+ takes on the appropriate values for young or old workers in year 
+\begin_inset Formula $\pYear$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Over time, skill prices generate a common trend for all ages: the college
+ premium rises starting around 1980.
+\end_layout
+
+\begin_layout Standard
+The second creates divergent trends for young and old workers, due to different
+ evolution of cohort qualities for the 2 age groups.
+\end_layout
+
+\begin_layout Standard
+this mechanism alone is able to account closely for the college premium
+ by age, as shown in 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "fig:College-Wage-Premium"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Conclusion
 \begin_inset CommandInset label
@@ -1823,6 +2654,40 @@ name "sec:Conclusion"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Data: time-varying returns to experience.
+ Commonly interpreted as time-varying age-efficiency profiles or imperfect
+ substitution of young and old workers.
+\end_layout
+
+\begin_layout Standard
+Here: alternative interpretation.
+ Constant efficiency profiles, but time-varying skill price growth.
+\end_layout
+
+\begin_layout Standard
+Generated by a simple model with standard ingredients.
+\end_layout
+
+\begin_layout Standard
+Future work +++
+\end_layout
+
+\begin_layout Standard
+Cohort qualities are important in this view.
+ They generate differential evolution of skill premium for young and old
+ workers.
+\end_layout
+
+\begin_layout Standard
+and changing intercepts of wage profiles.
+\end_layout
+
+\begin_layout Standard
+More work needed to understand evolution of cohort qualities and relationship
+ to schooling.
 \end_layout
 
 \begin_layout Standard
@@ -1879,10 +2744,10 @@ status collapsed
 \end_layout
 
 \begin_layout Section
-Appendix: CPS Data
+Data Details
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:AppCPS"
+name "sec:Data-Details"
 
 \end_inset
 
@@ -1890,64 +2755,36 @@ name "sec:AppCPS"
 \end_layout
 
 \begin_layout Standard
-Refer to general appendix for construction of individual variables.
-\end_layout
-
-\begin_layout Subsection
-Sample
+This section shows addtional data results.
+ 
 \end_layout
 
 \begin_layout Standard
-CPS data are obtained from 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "ipums_cps"
-
-\end_inset
-
-.
- Summary information is provided in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "tab:CPSsummary"
+reference "fig:Cohort-Schooling"
 
 \end_inset
 
-.
- The sample contains men between the ages of 
-\begin_inset Formula $\ageOne$
+ shows estimated years of schooling (panel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CohortSchoolYears"
+
 \end_inset
 
- and 
-\begin_inset Formula $\ageRetire$
+) and school fractions (panel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CohortSchoolFrac"
+
 \end_inset
 
- observed in the 
-\begin_inset Formula $\dataYearOne-\dataYearLast$
-\end_inset
-
- waves of the March Current Population Survey.
- Persons are dropped if at least one of the following conditions are true:
-\end_layout
-
-\begin_layout Enumerate
-weeks worked per year < +++ 
-\end_layout
-
-\begin_layout Enumerate
-hours worked per week < +++
-\end_layout
-
-\begin_layout Enumerate
-employment is either unpaid or in the armed forces
-\end_layout
-
-\begin_layout Enumerate
-no valid wage information is provided (see below for details).
+) by cohort.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float table
+\begin_inset Float figure
 wide false
 sideways false
 status open
@@ -1956,10 +2793,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Summary statistics for CPS data
+Cohort Schooling
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:CPSsummary"
+name "fig:Cohort-Schooling"
 
 \end_inset
 
@@ -1973,181 +2810,75 @@ name "tab:CPSsummary"
 
 \begin_layout Plain Layout
 \align center
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/lutz/Documents/econ/hc/school_ojt/so1/out/g01/set901/cps_tb.tex"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Individual Variables
-\end_layout
-
-\begin_layout Standard
-The construction of individual variables is based on 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Bowlus:2012"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Paragraph
-Schooling:
-\end_layout
-
-\begin_layout Standard
-As discussed in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "jaeger1997"
-
-\end_inset
-
-, the coding of schooling changes in 1991.
- I use the coding scheme proposed in his tables 2 and 7 to recode HIGRADE
- and EDUC99 into the highest degree completed and the highest grade completed.
-\end_layout
-
-\begin_layout Standard
-Hours worked per year are defined as the product of hours worked last week
- and weeks worked last year.
- Weeks worked per year are intervalled until 1975.
- Each interval is assigned the average of weeks worked in years after 1975
- in the same interval.
- Until 1975, hours worked per week are only available for the previous week
- (HRSWORK).
- I regress hours worked on years of schooling and a quadratic in experience
- to impute hours worked.
- After 1975, I use usual hours worked per week (UHRSWRK).
-\end_layout
-
-\begin_layout Paragraph
-Income variables:
-\end_layout
-
-\begin_layout Standard
-Labor earnings are defined as the sum of wage and salary incomes (INCWAGE).
- Wages are defined as labor earnings divided by hours worked.
- Wages are set to missing if weeks worked are below +++ or hours worked
- per week are below +++.
- Outliers with less than +++% or more than +++ times the median wage are
- dropped.
-\end_layout
-
-\begin_layout Standard
-Income variables are top-coded.
- As discussed in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Bowlus:2012"
-
-\end_inset
-
-, the frequency of top-coding and the top-coded amounts vary substantially
- over time.
- In addition, top-coding flags contain obvious errors.
- In most years, fewer than 2% of labor earnings observations appear to be
- top-coded.
- Following 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Bowlus:2012"
-
-\end_inset
-
-, I use median rather than mean log wages to avoid this problem.
- Dollar values are deflated using the Consumer Price Index (all items, U.S.
- city average, series Id: CUUR0000SA0; see bls.gov).
-\end_layout
-
-\begin_layout Subsection
-Aggregate Variables
-\end_layout
-
-\begin_layout Paragraph
-Schooling:
-\end_layout
-
-\begin_layout Standard
-The fraction of persons in cohort 
-\begin_inset Formula $\tau$
-\end_inset
-
- that achieves school level 
-\begin_inset Formula $s$
-\end_inset
-
- is calculated by averaging over ages 
-\begin_inset Formula $\schoolAgeRangeOne$
-\end_inset
-
- through 
-\begin_inset Formula $\schoolAgeRangeLast$
-\end_inset
-
- (not all ages are observed for all cohorts).
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:CohortSchool"
-
-\end_inset
-
- shows these fractions.
- Each point represents one cohort.
- Educational attainment grows until the 1950 cohort and then levels off
- (see 
-\begin_inset CommandInset citation
-LatexCommand citealt
-key "GoldinKatz2008"
-
-\end_inset
-
- for an extensive discussion of these trends).
-\end_layout
-
-\begin_layout Standard
-Out of sample: assumed constant (for now +++).
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename /Users/lutz/Documents/econ/hc/school_ojt/so1/out/g04/set901/cohort_school.pdf
-	width 60text%
-	groupId oneAcross
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average years of schooling
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CohortSchoolYears"
 
 \end_inset
 
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/cohort_school.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Educational Attainment By Birth Cohort
+Fraction in each school group
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:CohortSchool"
+name "fig:CohortSchoolFrac"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/cohort_school_fractions.pdf
+	width 45text%
+	groupId twoAcross
 
 \end_inset
 
@@ -2164,29 +2895,207 @@ name "fig:CohortSchool"
 
 \end_layout
 
-\begin_layout Paragraph
-Age wage profiles:
+\begin_layout Section
+Estimation Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Estimation-Results"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Construct median earnings per week for each 
-\begin_inset Formula $\left(s,\age,\bYear\right)$
+This section shows additional estimation results.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SkillPriceWage"
+
 \end_inset
 
- cell.
- This drops outliers, but retains workers who report zero hours and thus
- zero earnings.
- This is the target.
+ shows model skill prices and log median wages from data.
+ Aside from linear trends, which are not identified, skill prices are quite
+ close to model wages.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+might show skill prices with same trend as model wages
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Shows a very large decline after age 60.
- Hard to interpret because hours worked decline as well (retirement).
- For this reason, exclude observations past age 60 from the targets.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Skill Prices and Wages
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SkillPriceWage"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-Figure +++
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HSD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_time_s1.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HSG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_time_s2.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_time_s3.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CG
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PaperFigures/wage_time_s4.pdf
+	width 45text%
+	groupId twoAcross
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section

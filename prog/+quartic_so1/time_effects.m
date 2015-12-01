@@ -15,7 +15,7 @@ function time_effects(saveFigures, gNo)
       baseIdx = find(regrS.yearValueV == baseYear);
       timeDummyV = regrS.yearDummyV - regrS.yearDummyV(baseIdx);
 
-      dataWageV  = tgS.logWage_stM(iSchool, :)';
+      dataWageV  = tgS.logWage_syM(iSchool,:)';
       baseWage   = dataWageV(cS.wageYearV == baseYear);
 
       vIdxV = matrixLH.find_valid([regrS.yearDummyV(:), dataWageV(:)], cS.missVal);

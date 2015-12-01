@@ -27,5 +27,8 @@ dataS.aggrAgeRangeV = [25; 60];  % +++ how to set this?
 % Compute wage growth over this age range
 dataS.wageGrowthAgeV = [25; 40];
 
+% HP filter param for smooth hours profiles
+dataS.hpFilterHours = 20;
+
 
 end

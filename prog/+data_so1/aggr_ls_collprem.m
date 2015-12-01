@@ -37,7 +37,7 @@ relLSV(idxV) = relLSV(idxV) - gLS .* (idxV - idxV(1));
 % Years match cS.wageYearV
 % Constant composition wage premium
 
-collPremV = (tgS.logWage_stM(cS.schoolCG,:) - tgS.logWage_stM(cS.schoolHSG,:))';
+collPremV = (tgS.logWage_syM(cS.schoolCG,:) - tgS.logWage_tsM(cS.schoolHSG,:))';
 if ~v_check(collPremV, 'f', [nYr, 1], cS.missVal, [])
    error('Invalid');
 end

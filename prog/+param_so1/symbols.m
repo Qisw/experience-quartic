@@ -11,15 +11,15 @@ For data counterparts: add a hat
 
 %% General notation
 
-symS = SymbolTableLH({'pYear', 'pWeight'}, ...
-   {'t', '\omega'});
+symS = SymbolTableLH({'pYear', 'pWeight', 'na', 'grRate'}, ...
+   {'t', '\omega', 'n/a', 'g'});
 
 
 
 %% Demographics
 
-symS.add({'age', 'bYear', 'birthYear', 'lifeSpan', 'tEndow'}, ...
-   {'a', 'c',  'c',  'A',  '\ell'});
+symS.add({'age', 'bYear', 'birthYear', 'lifeSpan', 'tEndow',      'sIndex', 'sMax'}, ...
+   {'a', 'c',  'c',  'A',  '\ell',     's', 'S'});
 
 
 
@@ -44,8 +44,9 @@ symS.add({'pProduct', 'pAlpha', 'pDelta', 'trainTime'}, ...
 
 %% Work
 
-symS.add({'sPrice', 'skillPrice', 'earn', 'effUnits', 'wage'}, ...
-   {'p', 'p', 'y', 'e', 'w'});
+symS.add({'sPrice', 'skillPrice', 'earn', 'effUnits', 'wage', ...
+   'cohortQuality', 'cohQualFct', 'cohSchool', 'cqBeta'}, ...
+   {'p', 'p', 'y', 'e', 'w',     'q', 'Q', '\bar{s}', '\phi'});
 
 
 %% Aggregates
@@ -54,8 +55,8 @@ symS.add({'sPrice', 'skillPrice', 'earn', 'effUnits', 'wage'}, ...
 % L: Aggregate hours in a cell (data)
 % A: Neutral productivity
 % omega: Skill weights
-symS.add({'lSupply', 'aggrHours', 'neutralProd', 'skillWeight', 'aggrOutput'}, ...
-   {'H', 'L', 'B', '\mu', 'Q'});
+symS.add({'lSupply', 'aggrHours', 'neutralProd', 'skillWeight', 'muIntercept',      'aggrOutput'}, ...
+   {'H', 'L', 'B', '\mu', '\bar{\mu}',     'Y'});
 
 
 

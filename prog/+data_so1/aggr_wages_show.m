@@ -17,7 +17,7 @@ if 1
    
    for iSchool = 1 : cS.nSchool
       iLine = iSchool;
-      plot(cS.wageYearV,  tgS.logWage_stM(iSchool, :),  figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine,:));      
+      plot(cS.wageYearV,  tgS.logWage_syM(iSchool,:),  figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine,:));      
    end
    
    hold off;
@@ -36,7 +36,7 @@ if 1
    
    for iSchool = 1 : cS.nSchool
       iLine = iSchool;
-      plot(cS.wageYearV,  tgS.logWage_stM(iSchool, :) - tgS.logWage_stM(cS.iHSG, :),  ...
+      plot(cS.wageYearV,  tgS.logWage_syM(iSchool,:) - tgS.logWage_syM(cS.iHSG,:),  ...
          figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine,:));      
    end
    

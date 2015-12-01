@@ -9,14 +9,7 @@ Checked:
 % -------------------------------------------------
 
 cS = const_data_so1(gNo);
-setNo = cS.dataSetNo;
-
 saveFigures = 1;
-
-
-
-%    % IQ targets
-%    iq_targets_so1(gNo, setNo);
 
 
 
@@ -49,6 +42,9 @@ data_so1.cal_targets(gNo);
 
 %% Show cal targets 
 
+% Set up preamble
+data_so1.preamble_init(cS);
+
 data_so1.cal_targets_show(saveFigures, gNo);
 data_so1.coll_prem_young_old_show(saveFigures, gNo);
 
@@ -69,9 +65,8 @@ data_so1.aggr_ls_collprem(saveFigures, gNo);
 %  Better method used in quartic model
 data_so1.cs_returns_show(saveFigures, gNo);
 
-
-
-%  +++ preamble_group_so1(gNo, setNo);
+% Write preamble
+data_so1.preamble_make(gNo);
 
    
 end

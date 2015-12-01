@@ -13,7 +13,12 @@ end
 % fieldNameStr = regexprep(fieldNameStr, '[_\\]', '');
 
 % add_field changes non-Latex command compatible fields
-preamble_lh.add_field(fieldNameStr,  valueStr, output_so1.var_fn(varS.vPreambleData, cS), commentStr);
+if cS.isDataSetNo
+   preVarNo = varS.vDataPreamble;
+else
+   preVarNo = varS.vPreambleData;
+end
+preamble_lh.add_field(fieldNameStr,  valueStr, output_so1.var_fn(preVarNo, cS), commentStr);
 
 fprintf('Preamble: added field %s  with value %s \n',  fieldNameStr, valueStr);
 
