@@ -20,7 +20,7 @@ figS.slideOutput = false;
 if figS.slideOutput
    fontSizeFactor = 1.35;
 else
-   fontSizeFactor = 1;
+   fontSizeFactor = 1.1;
 end
 
 % Font size for legend, xlabels, axes
@@ -30,23 +30,27 @@ figS.legendFontSize = 10 * fontSizeFactor;
 % Font size for latex must be a little larger
 figS.latexFontSize = 12 * fontSizeFactor;
 
+% Ratio of width/height
+whRatio = 1.2;
+
 
 %% Figure options / sizes
 
 % Sizes must be consistent with what's used in the paper. Otherwise fonts
 % get scaled
-figHeight = 4; % inches
 figWidth  = 4;
+figHeight = 4 / whRatio; % inches
+
 if strcmpi(fileFormat, 'pdf')
    % Extension
    figS.figExt = '.pdf';
    figS.figOptS = struct('height', figHeight, 'width', figWidth, 'color', 'rgb', 'Format', 'pdf', ...
-      'FontSize', 1 * fontSizeFactor, 'FontMode', 'scaled');
+      'FontSize', fontSizeFactor, 'FontMode', 'scaled');
 elseif strcmpi(fileFormat, 'eps')
    % Extension
    figS.figExt = '.eps';
    figS.figOptS = struct('preview', 'tiff', 'height', figWidth, 'width', figWidth, 'color', 'rgb', 'Format', 'eps', ...
-      'FontSize', 1 * fontSizeFactor, 'FontMode', 'scaled');   
+      'FontSize', fontSizeFactor, 'FontMode', 'scaled');   
 else
    error('Invalid');
 end
@@ -54,18 +58,22 @@ end
 % Always save FIG file with underlying data
 figS.figOptS.saveFigFile = 1;
 
-% 2 plots side-by-side
-figS.figOpt2S = figS.figOptS;
-figS.figOpt2S.height = figHeight;
-figS.figOpt2S.width  = 2 * figWidth;
+% 2 plots side-by-side; each plot is its own figure
+figS.figOpt2AcrossS = figS.figOptS;
+figS.figOpt2AcrossS.width = figWidth;
+figS.figOpt2AcrossS.height = figS.figOpt2AcrossS.width / whRatio;
+
+
 % 4 panel
-figS.figOpt4S = figS.figOpt2S;
-figS.figOpt4S.height = 2 * figHeight;
+figS.figOpt4S = figS.figOpt2AcrossS;
 figS.figOpt4S.width  = 2 * figWidth;
+figS.figOpt4S.height = 2 * figHeight / whRatio;
+
 figS.figOpt6S = figS.figOpt4S;
-figS.figOpt6S.height = 3 * figHeight;
+figS.figOpt6S.height = 3 * figHeight / whRatio;
+
 % Quarter size figure (4 panels or 2 side-by-side)
-figS.figOptQuarterS = figS.figOptS;
+figS.figOptQuarterS = figS.figOpt2AcrossS;
 % Keep sizes the same no matter how figs are displayed
 %figS.figOptQuarterS.height = figS.figOptS.height * 0.7;
 %figS.figOptQuarterS.width  = figS.figOptS.width  * 0.7;
@@ -77,7 +85,7 @@ figS.figOptQuarterS = figS.figOptS;
 figS.colorV = 'kbrgcmkbrgcm';
 
 % Set default colors muted
-xV = 0.2 : 0.15 : 0.96;
+xV = 0.2 : 0.25 : 0.96;
 ncol = length(xV);
 figS.colorM = zeros([2 * ncol, 3]);
 for ix = 1 : length(xV)

@@ -1,4 +1,5 @@
 classdef QuarticModel
+% Sets default properties of the model to be estimated
    
 properties
    % Use weights in wage regression?
@@ -21,6 +22,10 @@ properties
    %}
    cohortEffects
    
+   % Age effects
+   % Possible values 'ageDummies', 'poly2', 'poly4'
+   ageEffects
+   
    % Highest age to use
    ageMax
    
@@ -36,6 +41,9 @@ methods
       
       % Cohort effects
       qS.cohortEffects = EnumLH('schoolYears', {'none', 'schooling', 'schoolYears', 'dummies', 'expost'});
+      
+      % Age effects
+      qS.ageEffects = EnumLH('poly4', {'ageDummies', 'poly2', 'poly4'});
 
       qS.ageMax = 60;
       

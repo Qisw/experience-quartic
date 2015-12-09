@@ -11,7 +11,7 @@ iSchoolV = 1 : cS.nSchool;
 iSchoolV(cS.iHSG) = [];
 legendV = cS.schoolLabelV(iSchoolV);
 
-output_so1.fig_new(saveFigures, []);   
+output_so1.fig_new(saveFigures, figS.figOpt2AcrossS);   
 hold on;
 iLine = 0;
 
@@ -35,7 +35,7 @@ end
 hold off;
 xlabel('Year');
 ylabel('Log skill weights (relative)');
-legend(legendV, 'location', 'southoutside', 'orientation', 'horizontal');
+legend(legendV, 'location', 'best');
 output_so1.fig_format(gca, 'line');
 output_so1.fig_save(figFn, saveFigures, cS);
 

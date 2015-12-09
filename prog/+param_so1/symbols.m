@@ -11,8 +11,8 @@ For data counterparts: add a hat
 
 %% General notation
 
-symS = SymbolTableLH({'pYear', 'pWeight', 'na', 'grRate'}, ...
-   {'t', '\omega', 'n/a', 'g'});
+symS = SymbolTableLH({'pYear', 'pWeight', 'na', 'grRate', 'cellMass'}, ...
+   {'t', '\omega', 'n/a', 'g', 'N'});
 
 
 
@@ -55,8 +55,9 @@ symS.add({'sPrice', 'skillPrice', 'earn', 'effUnits', 'wage', ...
 % L: Aggregate hours in a cell (data)
 % A: Neutral productivity
 % omega: Skill weights
-symS.add({'lSupply', 'aggrHours', 'neutralProd', 'skillWeight', 'muIntercept',      'aggrOutput'}, ...
-   {'H', 'L', 'B', '\mu', '\bar{\mu}',     'Y'});
+symS.add({'lSupply', 'aggrHours', 'neutralProd', 'skillWeight', 'muIntercept',      ...
+   'aggrOutput', 'substElast', 'cesRho'}, ...
+   {'H', 'L', 'B', '\mu', '\bar{\mu}',     'Y', '\eta', '\rho'});
 
 
 

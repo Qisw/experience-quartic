@@ -48,7 +48,7 @@ elseif cS.quarticS.cohortEffects.equals('schoolYears')
    
    x_cV = tgS.schoolYrMean_cV;
    
-   % This is really not robust +++++
+   % This is really not robust +++
    
    % Cohort effect = cohort schooling measure * beta(schooling)
    for iSchool = 1 : cS.nSchool
@@ -83,7 +83,7 @@ output_so1.fig_save(fullfile(cS.dirS.quarticDir, 'cohort_effects'),  saveFigures
 %% Relative to hsg
 
 relDummyM = bYearDummyM - repmat(bYearDummyM(:, cS.iHSG), [1, cS.nSchool]);
-fh = output_so1.plot_by_school(bYearValueV, relDummyM, 'Birth year', 'Cohort effect rel to HSG', saveFigures, cS);
+fh = output_so1.plot_by_school(bYearValueV, relDummyM, 'Birth year', 'Cohort effect relative to HSG', saveFigures, cS);
 output_so1.fig_save(fullfile(cS.dirS.quarticDir, 'cohort_effects_relative'),  saveFigures, cS);
 
    

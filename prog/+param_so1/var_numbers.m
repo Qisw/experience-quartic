@@ -1,71 +1,5 @@
 function cS = var_numbers
 
-%%  Model Variables: 1 - 199
-
-% % Calibration results
-% cS.vCalResults = 1;
-% % Calibrated parameters
-% cS.vParams = 8;
-% 
-% % Hh Policy functions
-% cS.vHhSolution = 3;
-% 
-% % Random variables to reuse for simulating histories
-% cS.vRandomVars = 2;
-% % Sim stats. Computed after calibration is done
-% cS.vSimStats = 11;
-% % Aggregate stats implied by model
-% cS.vAggrStats = 20;
-% % Aggregate study times
-% cS.vAggrSTime = 18;
-% 
-% % History of globalsearch_lh
-% cS.vOptimHistory = 6;
-% cS.vOptimHistoryTemp = 7;
-% 
-% % Inputs to calibration deviation
-% cS.vCalDevInputs = 9;
-% 
-% % Pv of lifetime earnings, mean log, by [school, cohort]
-% % also with random school assignment
-% %cS.vPvLty = 10;
-% % Results of pvearn_notraining
-% cS.pvEarnNoTraining = 13;
-% 
-% % Selection experiments
-% % Effect on wage paths
-% %cS.vSelectionPath = 12;
-% % Aggregate stats with random school assignment
-% cS.vAggrStatsNoSelection = 19;
-% 
-% % Flat spot wage path from model
-% cS.vFlatSpotModel = 14;
-% 
-% % Results of perturbing ddh and R
-% cS.vPerturbR = 15;
-% cS.vPerturbDdh = 16;
-% 
-% % Reserved for testing: 90 - 99
-% 
-% cS.vErrorData = 91;
-% 
-% 
-% % Preamble results are collected here
-% cS.vPreambleData = 17;
-% 
-% 
-% % *******  Saved as single, loaded as double: 151-199
-% % Save / load with the usual function
-% 
-% % Simulated histories (created by sim_histories)
-% cS.vSimResults = 151;
-% % Simulated steady state solutions
-% % cS.vSteadyStates = 152;
-% 
-% % Test variable
-% cS.vTest = 199;
-
-
 
 %%  Data variables: 201-300
 
@@ -101,15 +35,15 @@ cS.vAggrCpsWeights = 210;
 % Aggregate CPS wage stats
 cS.vAggrCpsStats = 211;
 
-% Flat spot wages
-cS.vFlatSpotWages = 207;
+% % Flat spot wages
+% cS.vFlatSpotWages = 207;
 
 % Calibration targets
 % Calibration targets
 cS.vCalTargets = 209;
 
-% IQ targets (from NLSY)
-cS.vTgIq = 213; 
+% % IQ targets (from NLSY)
+% cS.vTgIq = 213; 
 
 % CPS earnings profiles filter settings
 cS.vCpsEarnFilter = 215;
@@ -121,6 +55,8 @@ cS.vDataPreamble = 216;
 % Model with fixed experience profiles
 cS.vQuarticModel = 250;
 cS.vQuarticSkillWeights = 251;
+
+cS.vTest = 299;
 
 
 end

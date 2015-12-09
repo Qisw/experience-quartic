@@ -5,15 +5,12 @@ If setNo invalid: set cS.validSet = 0
 
 
 Index order
-   [age t,  year y,  h,  s,  cohort c]
+   [age t,  year y,  s,  cohort c]
    matrices are indexed by physical age
 
 Conventions
-   in birth year, person is age +++
-   matrices are indexed by physical age
-   year = [birth year] + age - 1
-   present values do not discount current period values
-
+   in birth year, person is age cS.demogS.ageInBirthYear
+      year = [birth year] + age - 1
 
 Checked: 2015-Oct-26
 %}
@@ -27,45 +24,25 @@ cS.gNo   = gNo;
 cS.setNo = setNo;
 cS.validSet = 1;
 
-% Descriptive string
-cS.setStr = 'default';
-
-% Version. To ensure that all results are consistent
-cS.version = 3;
+% Directories
+cS.dirS = param_so1.directories([], cS.gNo, cS.setNo);
 
 % Notation
 cS.symS = param_so1.symbols;
+
 % Variable numbers
 cS.varNoS = param_so1.var_numbers;
 
-
-
-%%  Data parameters
-
+% Data parameters
 cS.dataS = data_so1.data_const;
-
-% Quartic model settings
-cS.quarticS = param_so1.QuarticModel;
-
 % Years with wage data
-cS.wageYearV = 1964 : 2010;
-
-
-% Compute cohort schooling over this age range
-%  make sure this is used in cps routines +++
-cS.schoolAgeRangeV = [30, 50];
+cS.wageYearV = cS.dataS.wageYearV;
 
 % Use median or mean log wage?
 cS.useMedianWage = 1;
 
-% Data wages are not expected to be > this value (to check scaling)
-cS.maxWage = 10;
-
 % for cps data routines (as string, b/c we don't know the number)
 cS.cpsSetNoStr = 'setExperDefault';
-
-% Min no of wage obs to keep a cell
-cS.minWageObs = 50;
 
 % Hourly or weekly wages
 %  Make sure this matches what cps profiles use +++
@@ -73,61 +50,34 @@ cS.hourlyWages = 53;
 cS.weeklyWages = 33;
 cS.wagePeriod = cS.weeklyWages;
 
-
-
-%% Default: Demographics
+% Demographics
 % Named choices go here. The actual parameter are derived later
-
 cS.demogSettingS.cohDefStr = EnumLH('quartic', {'annual', 'default', 'quartic', 'bowlus', 'long'});
 
+% Quartic model settings
+cS.quarticS = param_so1.QuarticModel;
 
-%% Default: What is calibrated
-
-% Calibrate base parameters only
-cS.doCalV = cS.calBase;
-
-% Substitution elasticities
-cS.calWhatS.substElast = true;
-
-
-
-
-%% Grouped settings
-% All of these can be overridden by groups or sets
-
-% Settings for skill price paths
-cS.spSpecS = skillPriceSpecs_so1('wageYears', 'sbtc', 'constGrowth', 'constGrowth');
-
-% Calibration targets
-cS.calS = CalSettingsSo1;
+% Result settings
+cS.resultS = param_so1.result_settings;
 
 %  Groups override parameters
-[cS, groupS] = param_so1.group_settings(cS);
-cS.groupS = groupS;
+cS = param_so1.group_settings(cS);
 
 %  Sets override settings again
-cS = param_so1.set_settings(cS);
-cS.dataSetNo = cS.setS.dataSetNo;
+cS.setS = param_so1.set_settings(cS);
 
 
 %%  Implied parameters
 % Only here are actual parameter set. Before we just choose named settings
-
-% Also defines what is calibrated / fixed
-% cS.pvector = param_so1.pvector_default(cS);
 
 % Demographics
 workStartAge_sV = [18, 19, 21, 23]';
 cS.demogS = DemographicsSo1(workStartAge_sV(1), 65, workStartAge_sV, cS.demogSettingS);
 cS.nCohorts = cS.demogS.nCohorts;
 
-
-cS.dirS = param_so1.directories([], cS.gNo, cS.setNo);
-
-cS.nCohorts = cS.demogS.nCohorts;
-
-% Age in year of birth
-cS.ageInBirthYear = cS.demogS.ageInBirthYear;
+% Indices of years with wages
+cS.wageYearIdxV = cS.dataS.wageYearV - cS.dataS.yearV(1) + 1;
+assert(isequal(cS.dataS.yearV(cS.wageYearIdxV),  cS.dataS.wageYearV));
 
 
 if cS.useMedianWage == 1
@@ -149,10 +99,11 @@ else
    error('Invalid');
 end
 
-   
-% Self-test
-if cS.dbg > 10
-   param_so1.const_check(cS);
-end
 
+% ******  Result display
+
+% Age range to display for cohort wage profiles
+cS.resultS.ageRange_asM = [cS.demogS.workStartAgeV(:)';  repmat(cS.quarticS.ageMax, [1, cS.nSchool])];
+
+   
 end

@@ -9,11 +9,13 @@ fprintf('\nTesting everything\n');
 
 %% Grouped
 
-% Aggregates
-aggr_so1.test_aggr(testSolution, gNo, setNo);
-
 % Parameters
 param_so1.test_all(gNo, setNo);
+
+
+%% Aggregation
+
+aggr_so1.aggr_stats_test(gNo, setNo);
 
 
 %% Helper

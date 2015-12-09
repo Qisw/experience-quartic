@@ -2,7 +2,8 @@ function fit_summary(gNo)
 % Summary table with model fit
 
 cS = const_data_so1(gNo);
-minObs = 10;
+% Min no of obs to compute fit for a cohort
+minObs = cS.resultS.fitMinObs;
 
 tgS = var_load_so1(cS.varNoS.vCalTargets, cS);
 loadS = var_load_so1(cS.varNoS.vQuarticModel, cS);
@@ -16,7 +17,6 @@ nq = length(qPctV);
 % Rsquared, weighted by sqrt of no of obs in each cell
 r2_scM = repmat(cS.missVal, [cS.nSchool, cS.nCohorts]);
 
-% r2Median_sV = nan([cS.nSchool, 1]);
 r2Quantile_qsM = nan([nq, cS.nSchool]);
 r2Std_sV = nan([cS.nSchool, 1]);
 r2Min_sV = nan([cS.nSchool, 1]);
@@ -39,7 +39,6 @@ for iSchool = 1 : cS.nSchool
    
    idxV = find(r2_scM(iSchool,:) ~= cS.missVal);
    r2V = r2_scM(iSchool, idxV);
-%    r2Median_sV(iSchool) = median(r2V);
    r2Quantile_qsM(:, iSchool) = quantile(r2V, qPctV);
    r2Std_sV(iSchool) = std(r2V);
    r2Min_sV(iSchool) = min(r2V);
@@ -47,15 +46,16 @@ for iSchool = 1 : cS.nSchool
    n_sV(iSchool) = length(r2V);
 end
 
-
+idxMedian = find(abs(qPctV - 0.5) < 0.01);
+r2MedianV = r2Quantile_qsM(idxMedian, :)';
 
 
 %% Latex table
 
 cMean = 0;
 cStd = 0;
-cMin = 0;
-cMax = 0;
+% cMin = 0;
+% cMax = 0;
 
 colHeaderV = cell(10, 1);
 ic = 1;  cMedian = ic;  colHeaderV{cMedian} = 'Median';
@@ -81,7 +81,7 @@ if cStd > 0
    tbS.fill_col(cStd, r2Std_sV, fmtStr);
 end
 if cMedian > 0
-   tbS.fill_col(cMedian, r2Quantile_qsM(2,:), fmtStr);
+   tbS.fill_col(cMedian, r2MedianV, fmtStr);
 end
 tbS.fill_col(cLow, r2Quantile_qsM(1,:), fmtStr);
 tbS.fill_col(cHigh, r2Quantile_qsM(nq,:), fmtStr);
@@ -90,6 +90,11 @@ tbS.fill_col(cN, n_sV, '%i');
 tbS.write_table;
 tbS.write_text_table;
 
+
+%% Preamble
+
+results_so1.preamble_add('fitMedianMin', sprintf('%.2f', min(r2MedianV)), 'Min R2 median', cS);
+results_so1.preamble_add('fitMedianMax', sprintf('%.2f', max(r2MedianV)), 'Max R2 median', cS);
 
 
 end

@@ -38,9 +38,10 @@ for iSchool = 1 : cS.nSchool
    effV = exp(effV);
    
    for iy = 1 : ny
-      hoursV = tgS.aggrHours_tsyM(ageV, iSchool, iy);
-      validateattributes(hoursV, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', 'positive'})
-      saveS.lSupply_syM(iSchool, iy) = sum(hoursV .* effV);
+      % Hours can have missing values (small cells; treat as 0)
+      hoursV = max(0, tgS.aggrHours_tsyM(ageV, iSchool, iy));
+      validateattributes(hoursV, {'double'}, {'finite', 'nonnan', 'nonempty', 'real'})
+      saveS.lSupply_syM(iSchool, iy) = sum(hoursV(:) .* effV(:));
    end
 end
 

@@ -25,7 +25,7 @@ varS = param_so1.var_numbers;
 
 isDataVarNo = (varNo >= varS.dataVarRangeV(1))  &&  (varNo <= varS.dataVarRangeV(2));
 
-if cS.isDataSetNo ~= isDataVarNo
+if cS.setS.isDataSetNo ~= isDataVarNo
    error('data set does not match variable no');
 end
 

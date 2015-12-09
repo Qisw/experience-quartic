@@ -1,17 +1,16 @@
-function run_all_so1(gNo, setNo)
+function run_all_so1(gNo)
 % Run everything in sequence
 %{
-Making a new setNo
-   Give it a name
-   Override its options
-   Use run_all to create cal targets etc
-   Perhaps also copy paramS from another setNo
-   If a grid: create a shell script to run it
-   chmod +x script.sh
+setNo is currently not used
+
+Need to run:
+   gNo 9: baseline
+   gNo 6: wage earners
 %}
 % ------------------------------------
 
-cS = const_so1(gNo, setNo);
+% setNo = 901;
+% cS = const_so1(gNo, setNo);
 
 % Make all directories for this set
 if 0
@@ -19,22 +18,23 @@ if 0
 end
 
 
-%% Run data routines (cpsojt must be on path)
-%  Run only once
-if cS.isDataSetNo
-   % Run CpsEarn to generate the data files
-   %  Anything that depends on cpsearn is contained here
-   data_so1.run_cpsearn(gNo);
-   run_data_so1(gNo);
-   quartic_run_so1(gNo);
-   return;
-end
+% Run CpsEarn to generate the data files
+%  Anything that depends on cpsearn is contained here
+data_so1.run_cpsearn(gNo);
 
+% Prepare data files
+run_data_so1(gNo);
 
+% Estimate quartic model and produce results
+quartic_run_so1(gNo);
+
+% Copy figures and tables used in paper
+paper_figures_so1;
 
 
 %%  Testing
 if 0
+   setNo = 901;
    test_all_so1(gNo, setNo);   
 end
 

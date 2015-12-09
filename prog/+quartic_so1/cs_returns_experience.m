@@ -13,10 +13,6 @@ outDir = cS.dirS.quarticDir;
 
 ny = length(cS.wageYearV);
 
-%    % Wage growth between these 2 experience levels (should not be hard coded +++)
-%    experLow = 5;
-%    experHigh = 25;
-
 
 %% Compute wage growth by [school, year]
 
@@ -50,8 +46,11 @@ end
 
 
 %% Plot
+
+fhV = zeros(cS.nSchool, 1);
+
 for iSchool = 1 : cS.nSchool
-   fh = output_so1.fig_new(saveFigures, []);
+   fhV(iSchool) = output_so1.fig_new(saveFigures, figS.figOpt2AcrossS);
    hold on;
    
    for iLine = [iModel, iData]
@@ -62,8 +61,16 @@ for iSchool = 1 : cS.nSchool
    hold off;
    xlabel('Year');
    ylabel('Cross-sectional wage growth');
-   legend({'Model', 'Data'}, 'location', 'southoutside', 'orientation', 'horizontal');
-   output_so1.fig_format(fh, 'line');
+   if iSchool == 1
+      legend({'Model', 'Data'}, 'location', 'southeast',  'orientation', 'horizontal');
+   end
+end
+
+% figures_lh.axes_same(fhV, []);
+
+for iSchool = 1 : cS.nSchool
+   figure(fhV(iSchool));
+   output_so1.fig_format(fhV(iSchool), 'line');
    output_so1.fig_save(fullfile(outDir, ['cs_return_exper_', cS.schoolSuffixV{iSchool}]),  saveFigures,  cS);
 end
 

@@ -2,7 +2,7 @@ function model(gNo)
 % Estimate model with fixed experience effects
 %{
 Regress log wage on
-- age dummies
+- age dummies or experience polynomial
 - year dummies
 - a measure of cohort schooling
 %}
@@ -17,7 +17,7 @@ saveFigures = 1;
 useCohortDummies = cS.quarticS.cohortEffects.equals('dummies');
 
 ageMax = cS.quarticS.ageMax;
-ny = length(cS.wageYearV);
+ny = length(cS.dataS.wageYearV);
 
 fprintf('\nWage regressions\n');
 
@@ -26,13 +26,13 @@ fprintf('\nWage regressions\n');
 %% Regression inputs: median wage by [t,s,y]
 
 tgS = output_so1.var_load(varS.vCalTargets, cS);
-logWage_tsyM = tgS.logWage_tsyM(1 : ageMax, :,:);
+logWage_tsyM = tgS.logWage_tsyM(1 : ageMax, :,cS.wageYearIdxV);
 
 % Weights
-nObs_tsyM = tgS.nObs_tsyM(1:ageMax,:,:);
+nObs_tsyM = tgS.nObs_tsyM(1:ageMax,:,cS.wageYearIdxV);
 wt_tsyM = sqrt(max(0,  nObs_tsyM));
 
-saveS.logWage_tscM = tgS.logWage_tscM(1 : ageMax, :,:);
+saveS.logWage_tscM = tgS.logWage_tscM(1 : ageMax, :,cS.wageYearIdxV);
 
 
 %% Make measure of cohort schooling
@@ -83,11 +83,12 @@ else
    x_tsyvM = [];
 end
 
-wrS = econLH.WageRegressionLH(xM, x_tsyvM, wt_tsyM, ageRange_tsM, cS.wageYearV, ...
-   cS.quarticS.useWeights, useCohortDummies);
+wrS = econLH.WageRegressionLH(xM, x_tsyvM, wt_tsyM, ageRange_tsM, cS.dataS.wageYearV, ...
+   cS.quarticS.useWeights, useCohortDummies, cS.quarticS.ageEffects.value);
 clear xM;
 
-wrS.regress;
+% Fitted values and confidence intervals
+[saveS.pred_tsyM, saveS.predCi_tsy2M] = wrS.regress;
 saveS.wrS = wrS;
 
 
@@ -96,13 +97,15 @@ saveS.wrS = wrS;
 % Predicted profiles by [age, school, year]
 %  With cohort schooling as additional regressor, this is only filled in for [age,year] combinations
 %  that belong to modeled cohorts!
-saveS.pred_tsyM = wrS.predict_ast;
+% saveS.pred_tsyM = wrS.predict_ast;
 saveS.pred_tsyM(isnan(saveS.pred_tsyM)) = cS.missVal;
 validateattributes(saveS.pred_tsyM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', 'size', size(logWage_tsyM)})
 
 
 % Predicted profiles by [age, school, cohort]
 saveS.pred_tscM = repmat(cS.missVal, [ageMax, cS.nSchool, cS.nCohorts]);
+% Confidence bands
+saveS.predCi_tsc2M = repmat(cS.missVal, [ageMax, cS.nSchool, cS.nCohorts, 2]);
 for iSchool = 1 : cS.nSchool
    % Ages to plot
    ageV = cS.demogS.workStartAgeV(iSchool) : ageMax;
@@ -112,7 +115,17 @@ for iSchool = 1 : cS.nSchool
       cS.demogS.bYearV, cS.demogS.ageInBirthYear, cS.missVal, cS.dbg)';
    assert(isequal(size(pred_tcM),  [length(ageV), length(cS.demogS.bYearV)]));
    saveS.pred_tscM(ageV,iSchool,:) = pred_tcM;
+   
+   for i2 = 1 : 2
+      x_tcM = econ_lh.cohort_age_from_age_year(squeeze(saveS.predCi_tsy2M(ageV,iSchool,:,i2)), ageV, cS.wageYearV, ...
+         cS.demogS.bYearV, cS.demogS.ageInBirthYear, cS.missVal, cS.dbg)';
+      assert(isequal(size(x_tcM),  [length(ageV), length(cS.demogS.bYearV)]));
+      saveS.predCi_tsc2M(ageV,iSchool,:,i2) = x_tcM;
+   end
 end
+
+validateattributes(saveS.predCi_tsc2M, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', ...
+   'size', [ageMax, cS.nSchool, cS.nCohorts, 2]})
 
 
 %% Add cohort effects

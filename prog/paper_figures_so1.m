@@ -1,7 +1,7 @@
 function paper_figures_so1
 % Copy figures used in paper
 
-gNo = 5;
+gNo = 9;
 setNo = 901;
 cS = const_so1(gNo, setNo);
 dirS = cS.dirS;
@@ -15,7 +15,7 @@ data_so1.preamble_make(gNo);
 cS.symS.preamble_write(cS.dirS.symbolFn);
 pS.add(dirS.preambleTexFn, 'preamble.tex');
 
-pS.add(dirS.tbDir, 'cps_tb.tex');
+pS.add(fullfile(dirS.tbDir, 'cps_tb.tex'));
 
 
 %% Data figures
@@ -40,7 +40,7 @@ end
 srcDir = dirS.quarticDir;
 fnV = {'collprem_young', 'collprem_middle', 'collprem_old', ...
    'profiles', 'cohort_effects_relative', ...
-   'skill_weights', 'fit_r2.tex'};
+   'skill_weights', 'fit_r2.tex', 'regr_results.tex'};
 add_multiple(fnV, srcDir);
 % for i1 = 1 : length(fnV)
 %    [~, fName, fExt] = fileparts(fnV{i1});

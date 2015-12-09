@@ -1,16 +1,20 @@
 function aggr_ls_collprem(saveFigures, gNo)
 % Show aggregate labor supply college/non-college vs college premium
 %{
-Checked: +++
+Checked: 2015-Dec-1
 %}
 
 cS = const_data_so1(gNo);
-yearV = cS.wageYearV;
+yearV = cS.dataS.yearV;
 nYr = length(yearV);
 varS = param_so1.var_numbers;
 figS = const_fig_so1;
 
 tgS = var_load_so1(varS.vCalTargets, cS);
+
+logWage_syM = matrix_lh.Matrix(tgS.logWage_syM, cS.missVal);
+% hours_syM = matrix_lh.Matrix(tgS.aggrHours_syM, cS.missVal);
+logHours_syM = matrix_lh.Matrix(log_lh(tgS.aggrHours_syM, cS.missVal), cS.missVal);
 
 
 %%  Construct labor by school
@@ -18,14 +22,18 @@ tgS = var_load_so1(varS.vCalTargets, cS);
 
 % Hours by college / non-college
 % Count half of CD as unskilled; as in Autor et al 
+
+% Years with data
+idxV = find(min(tgS.aggrHours_syM) > 0);
+
 hours2M = zeros([2, nYr]);
-hours2M(1, :) = sum(tgS.aggrHours_stM(cS.schoolHSD,:) + tgS.aggrHours_stM(cS.schoolHSG,:) + ...
-   0.5 .* tgS.aggrHours_stM(cS.schoolCD, :));
-hours2M(2, :) = 0.5 .* tgS.aggrHours_stM(cS.schoolCD, :) + tgS.aggrHours_stM(cS.schoolCG, :);
-relLSV = log_lh(hours2M(2,:) ./ hours2M(1,:), cS.missVal)';
-if ~v_check(relLSV, 'f', [nYr, 1], cS.missVal, [])
-   error('Invalid');
-end
+hours2M(1, :) = sum(tgS.aggrHours_syM(cS.iHSD,:) + tgS.aggrHours_syM(cS.iHSG,:) + ...
+   0.5 .* tgS.aggrHours_syM(cS.iCD, :));
+hours2M(2, :) = 0.5 .* tgS.aggrHours_syM(cS.iCD, :) + tgS.aggrHours_syM(cS.iCG, :);
+
+relLSV = repmat(cS.missVal, [nYr, 1]);
+relLSV(idxV) = log_lh(hours2M(2,idxV) ./ hours2M(1,idxV), cS.missVal)';
+validateattributes(relLSV, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', 'size', [nYr, 1]})
 
 % Detrend
 idxV = find(relLSV ~= cS.missVal);
@@ -37,10 +45,10 @@ relLSV(idxV) = relLSV(idxV) - gLS .* (idxV - idxV(1));
 % Years match cS.wageYearV
 % Constant composition wage premium
 
-collPremV = (tgS.logWage_syM(cS.schoolCG,:) - tgS.logWage_tsM(cS.schoolHSG,:))';
-if ~v_check(collPremV, 'f', [nYr, 1], cS.missVal, [])
-   error('Invalid');
-end
+relLogWage_syM = logWage_syM.vector_operOut(tgS.logWage_syM(cS.iHSG,:), logWage_syM.minus);
+
+collPremV = relLogWage_syM(cS.iCG, :)';
+validateattributes(collPremV, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', 'size', [nYr, 1]})
 
 % Detrend
 idxV = find(collPremV ~= cS.missVal);
@@ -67,19 +75,10 @@ output_so1.fig_save('aggr_ls_collprem', saveFigures, cS);
 
 %% Relative labor supplies
 if 1
-   output_so1.fig_new(saveFigures);
-   hold on;
-   for iSchool = 1 : cS.nSchool
-      iLine = iSchool;
-      yV = tgS.aggrHours_stM(iSchool, :) ./ tgS.aggrHours_stM(iSchool, 1);
-      plot(cS.wageYearV,  log(yV),  figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine,:));
-   end
-   hold off;
-
-   xlabel('Year');
-   ylabel('Log hours');
-   legend(cS.schoolLabelV, 'location', 'best');
-   output_so1.fig_format(gca, 'line');
+   % Hours in year 1 normalized to 0
+   y_syM = logHours_syM.vector_operOut(logHours_syM.mM(:, 1), logHours_syM.minus);
+   
+   fh = output_so1.plot_by_school(yearV, y_syM', 'Year', 'Log hours', saveFigures, cS);
    output_so1.fig_save('aggr_ls', saveFigures, cS);
 end
 

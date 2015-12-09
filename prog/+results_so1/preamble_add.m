@@ -13,7 +13,7 @@ end
 % fieldNameStr = regexprep(fieldNameStr, '[_\\]', '');
 
 % add_field changes non-Latex command compatible fields
-if cS.isDataSetNo
+if cS.setS.isDataSetNo
    preVarNo = varS.vDataPreamble;
 else
    preVarNo = varS.vPreambleData;

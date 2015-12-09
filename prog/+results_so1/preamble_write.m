@@ -10,7 +10,7 @@ in case it is started on server
 dirS = cS.dirS;
 varS = param_so1.var_numbers;
 
-if cS.isDataSetNo
+if cS.setS.isDataSetNo
    preVarNo = varS.vDataPreamble;
 else
    preVarNo = varS.vPreambleData;

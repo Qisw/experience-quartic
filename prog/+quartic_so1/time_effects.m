@@ -15,7 +15,7 @@ function time_effects(saveFigures, gNo)
       baseIdx = find(regrS.yearValueV == baseYear);
       timeDummyV = regrS.yearDummyV - regrS.yearDummyV(baseIdx);
 
-      dataWageV  = tgS.logWage_syM(iSchool,:)';
+      dataWageV  = tgS.logWage_syM(iSchool,cS.wageYearIdxV)';
       baseWage   = dataWageV(cS.wageYearV == baseYear);
 
       vIdxV = matrixLH.find_valid([regrS.yearDummyV(:), dataWageV(:)], cS.missVal);
@@ -27,7 +27,7 @@ function time_effects(saveFigures, gNo)
       plot(regrS.yearValueV(vIdxV),  timeDummyV(vIdxV) + baseWage,  ...
          figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine, :));
       iLine = iLine + 1;
-      plot(cS.wageYearV(vIdxV), dataWageV(vIdxV),  ...
+      plot(cS.dataS.wageYearV(vIdxV), dataWageV(vIdxV),  ...
          figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine, :));
       
       hold off;

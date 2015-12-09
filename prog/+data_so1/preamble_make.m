@@ -12,12 +12,12 @@ varS = param_so1.var_numbers;
 
 %% Data constants
 
-% +++ cpi base year : where is it set?
-add_one('cpiBaseYear',  2010, '%i',  'CPI base year',  cS);
-add_one('dataYearOne',  cS.wageYearV(1) + 1, '%i', 'Data year 1', cS);
-add_one('dataYearLast', cS.wageYearV(end) + 1, '%i', 'Data year N', cS);
-add_one('wageYearOne',  cS.wageYearV(1), '%i', 'Wage year 1', cS);
-add_one('wageYearLast', cS.wageYearV(end), '%i', 'Wage year N', cS);
+% cpi base year
+add_one('cpiBaseYear',  cS.dataS.cpiBaseYear, '%i',  'CPI base year',  cS);
+add_one('dataYearOne',  cS.dataS.wageYearV(1) + 1, '%i', 'Data year 1', cS);
+add_one('dataYearLast', cS.dataS.wageYearV(end) + 1, '%i', 'Data year N', cS);
+add_one('wageYearOne',  cS.dataS.wageYearV(1), '%i', 'Wage year 1', cS);
+add_one('wageYearLast', cS.dataS.wageYearV(end), '%i', 'Wage year N', cS);
 
 demogS = cS.demogS;
 add_one('bYearFirst', demogS.bYearV(1), '%i', 'Birth year 1', cS);
@@ -35,11 +35,14 @@ add_one('ageRangeMiddle', sprintf('%i-%i', dataS.ageRangeYoungOldM(2, :)), '%s',
 add_one('ageRangeOld', sprintf('%i-%i', dataS.ageRangeYoungOldM(3, :)), '%s', 'Old ages', cS);
 
 % For computing cohort schooling
-add_one('schoolAgeRangeOne', cS.schoolAgeRangeV(1), '%i', 'for school aggregation', cS);
-add_one('schoolAgeRangeLast', cS.schoolAgeRangeV(end), '%i', 'for school aggregation', cS);
+add_one('schoolAgeRangeOne', cS.dataS.schoolAgeRangeV(1), '%i', 'for school aggregation', cS);
+add_one('schoolAgeRangeLast', cS.dataS.schoolAgeRangeV(end), '%i', 'for school aggregation', cS);
 
+% Wage growth with experience: ages used
+add_one('experAgeOne',  cS.dataS.wageGrowthAgeV(1),   '%i', 'exper wage growth ages', cS);
+add_one('experAgeLast', cS.dataS.wageGrowthAgeV(end), '%i', 'exper wage growth ages', cS);
 
-add_one('hpParamHours', cS.dataS.hpFilterHours, '%i', 'Smoothing hours', cS);
+% add_one('hpParamHours', cS.dataS.hpFilterHours, '%i', 'Smoothing hours', cS);
 
 
 %% CPS filter
@@ -57,6 +60,11 @@ add_one('weeksMin', fltS.weeksMin, '%.0f', 'Min weeks', cS);
 add_one('qAgeMax', cS.quarticS.ageMax, '%i', 'Max age', cS);
 add_one('substElastOuter', cS.quarticS.substElastOuter, '%.1f', 'Subst elast outer', cS);
 add_one('substElastInner', cS.quarticS.substElastInner, '%.1f', 'Subst elast inner', cS);
+
+
+%% Results
+
+add_one('fitMinObs', cS.resultS.fitMinObs, '%i', 'Min obs for cohort fit', cS);
 
 results_so1.preamble_write(cS);
 

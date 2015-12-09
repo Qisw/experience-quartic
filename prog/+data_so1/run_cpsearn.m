@@ -18,6 +18,17 @@ cpsS = const_cpsearn(cpsSetNo);
 
 fltS = import_cpsearn.filter_settings(cpsS.fltExperDefault, cpsS);
 
+fltS.cpiBaseYear = cS.dataS.cpiBaseYear;
+
+% Years with data to use
+fltS.yearV = 1964 : 2010;
+
+% Wage years
+fltS.wageYearV = fltS.yearV - 1;
+fltS.wageYearV(fltS.wageYearV < 1964) = [];
+
+fltS.bYearV = 1910 : 2000;
+
 % Add some slack at the top (b/c one cpsearn routine wants it)
 fltS.ageMax = cS.demogS.ageRetire + 4;
 
@@ -60,7 +71,6 @@ var_save_so1(fltS, cS.varNoS.vCpsEarnFilter, cS);
 
 profS = profiles_cpsearn.settings('exper');
 profS.ageWorkStart_sV = cS.demogS.workStartAgeV;
-% profS.R = +++
 output_cpsearn.var_save(profS, cpsS.vProfileSettings, [], cpsSetNo);
 
 

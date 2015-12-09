@@ -37,7 +37,6 @@ end
 
 % baseDir = dirS.basDir;
 
-% May want to move that out of dropbox +++
 dirS.matBaseDir  = fullfile(dirS.baseDir, 'mat');
 dirS.outBaseDir  = fullfile(dirS.baseDir, 'out');
 
@@ -45,53 +44,6 @@ dirS.outBaseDir  = fullfile(dirS.baseDir, 'out');
    dirS.outDir = fullfile(dirS.outBaseDir, dirS.groupStr, dirS.setStr);
    dirS.matDir = fullfile(dirS.matBaseDir, dirS.groupStr, dirS.setStr);
    
-% if dirS.runLocal
-%    dirS.sharedDirV = lhS.sharedDirV;
-% else
-%    dirS.sharedDir = fullfile(dirS.baseDir, 'LH');
-% end
-% 
-
-
-% %% Kure directories, must always be set
-% 
-% % baseDir = '/nas02/home/l/h/lhendri/school_ojt/experience/';
-% % dirS.kureBaseDir = baseDir;
-% 
-% % dirS.kureProgDir = fullfile(baseDir, 'prog');
-% dirS.kureSharedDir = fullfile(baseDir, 'LH');
-% % dirS.kureMatBaseDir  = fullfile(baseDir, 'mat');
-% % dirS.kureOutBaseDir  = fullfile(baseDir, 'out');
-% % 
-% %    dirS.kureOutDir = fullfile(dirS.kureOutBaseDir, dirS.groupStr, dirS.setStr);
-% %    dirS.kureMatDir = fullfile(dirS.kureMatBaseDir, dirS.groupStr, dirS.setStr);
-% % 
-
-
-% %% Directories that apply on this machine
-% 
-% % Running locally?
-% if exist('/Users/lutz/', 'dir')    
-%    dirS.runLocal = true;
-%    dirS.baseDir = '/Users/lutz/dropbox/hc/school_ojt/experience/';
-%       
-%    dirS.sharedDir = lhS.sharedDir;
-%       
-% else
-%    % Kure
-%    dirS.runLocal = false;
-%    dirS.baseDir = dirS.kureBaseDir;
-%    dirS.progDir = dirS.kureProgDir;
-%    dirS.matBaseDir  = dirS.kureMatBaseDir;
-%    dirS.outBaseDir  = dirS.kureOutBaseDir;
-%       
-%       % Specific to group and set
-%       dirS.outDir = dirS.kureOutDir;
-%       dirS.matDir = dirS.kureMatDir;
-%       
-%    dirS.sharedDir = dirS.kureSharedDir;
-% end
-% 
 
 dirS.figDir = dirS.outDir;
 dirS.tbDir  = dirS.outDir;

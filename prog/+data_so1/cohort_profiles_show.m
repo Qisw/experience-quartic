@@ -5,8 +5,7 @@ Checked: 2013-6-7
 %}
 % ------------------------------------------
 
-cS = const_so1(gNo, 1);
-cS = const_so1(gNo, cS.dataSetNo);
+cS = const_data_so1(gNo);
 varS = param_so1.var_numbers;
 figS = const_fig_so1;
 
@@ -22,11 +21,7 @@ end
 
 % These are the wage profiles to be shown
 %  In dollar units
-if cS.useMedianWage == 1
-   wStr = 'Log median wage';
-else
-   wStr = 'Mean log wage';
-end
+wStr = 'Log wage';
 validateattributes(tgS.logWage_tscM, {'double'}, {'finite', 'nonnan', 'nonempty', 'real', ...
    'size', [size(tgS.logWage_tscM, 1), nSchool, nBy]});
 
@@ -61,7 +56,7 @@ if 1
    spGrowth_scM = helper_so1.aggr_wage_growth(tgS.logWage_syM, cS);
    
    for iSchool = 1 : cS.nSchool
-      output_so1.fig_new(saveFigures);
+      output_so1.fig_new(saveFigures, figS.figOpt2AcrossS);
       hold on;
       
       % Experience wage growth
@@ -79,7 +74,9 @@ if 1
       hold off;
       xlabel('Birth year');
       ylabel(sprintf('Wage growth, ages %i-%i',  cS.dataS.wageGrowthAgeV));
-      legend({'Experience', 'Time'},  'location', 'north'); % +++++ better legend
+      if iSchool == 1
+         legend({'Cohort', 'Aggregate'},  'location', 'southeast'); 
+      end
       output_so1.fig_format(gca, 'line');
       output_so1.fig_save(['wage_growth_exper_aggr_', cS.schoolSuffixV{iSchool}], saveFigures, cS);
    end
@@ -128,7 +125,7 @@ for iSchool = 1 : cS.nSchool
    xlabel('Age');
    ylabel(wStr);
    figures_lh.axis_range_lh([xMin, xMax, yMin, yMax]);
-   if iSchool == cS.schoolCG
+   if iSchool == cS.iCG
       legend(cS.demogS.cohStrV(byShowV), 'Location', 'southeast');
    end
       
@@ -148,7 +145,7 @@ if 1
       
       for iSchool = 1 : cS.nSchool
          nObsV = squeeze(tgS.nObs_tscM(:, iSchool, iBy));
-         idxV = find(nObsV >= cS.minWageObs);
+         idxV = find(nObsV >= cS.dataS.minWageObs);
          nObsV = nObsV(idxV);
          fprintf('%6.0f / %6.0f / %6.0f    ',  mean(nObsV), min(nObsV), max(nObsV));
       end

@@ -13,43 +13,7 @@ figS = const_fig_so1;
 tgS = output_so1.var_load(varS.vCalTargets, cS);
 
 
-%%  Beta IQ by experience
-if cS.hasIQ == 1
-   output_so1.fig_new(saveFigures);
-   plot(tgS.iqExperV, tgS.betaIqExperV, figS.lineStyleV{1}, 'color', figS.colorM(1,:));
-   xlabel('Experience');
-   ylabel('$\beta_{IQ}$', 'interpreter', 'latex');
-   axis_range_lh([NaN, NaN, 0, NaN]);
-   output_so1.fig_format(gca);
-   output_so1.fig_save('iq_beta_afqt_exper',  saveFigures, [], cS);
-end
-
-
-%% ***********  Taubman Wales graph
-if cS.hasIQ == 1
-   output_so1.fig_new(saveFigures);
-   
-   hold on;
-   plot(tgS.twIqByV, tgS.twIqPctM(1,:), figS.lineStyleV{1}, 'Color', figS.colorM(1,:));
-   plot(tgS.twIqByV, tgS.twIqPctM(2,:), figS.lineStyleV{2}, 'Color', figS.colorM(2,:));
-   hold off;
-   
-   axisV = axis;
-   axisV(3) = 0;
-   axis(axisV);
-   xlabel('Birth year');
-   ylabel('Mean IQ percentile score');
-   legend({'College', 'No college'},  'Location', 'South');
-
-   output_so1.fig_format(gca);
-   figFn = 'iq_taubman_wales';
-   output_so1.fig_save(figFn, saveFigures, cS);
-   %return;
-end
-
-
-
-%% Mean wage profiles by [a,s,t]
+%% Wage profiles by [age, school, year]
 if 01
    yearV = cS.wageYearV(1 : 2 : 10);
    legendV = arrayfun(@(x) {sprintf('%d', x)}, yearV);
@@ -71,40 +35,12 @@ if 01
       ylabel('Log wage');
       legend(legendV)
       output_so1.fig_format(gca, 'line');
-      output_so1.fig_save(['wage_log_ast_', cS.schoolSuffixV{iSchool}], saveFigures, cS);
+      output_so1.fig_save(['wage_log_tsy_', cS.schoolSuffixV{iSchool}], saveFigures, cS);
    end
 end
 
 
-
-%% Steady state log median wage profiles
-if 0
-   % Initial and terminal steady state
-   for iy = 1 : 2
-      
-      output_so1.fig_new(saveFigures);
-      hold on;
-      
-      for iSchool = 1 : cS.nSchool
-         % Ages over which to compare model with data
-         age1 = max(cS.demogS.workStartAgeV(iSchool) + cS.calS.profileDevDropYears, cS.calS.profileDevAgeRangeV(1));
-         xV = age1 : cS.calS.profileDevAgeRangeV(2);
-         yV = tgS.ssS.logWage_astM(xV,iSchool,iy);
-         idxV = find(yV ~= cS.missVal);
-         plot(xV(idxV), yV(idxV), figS.lineStyleDenseV{iSchool}, 'color', figS.colorM(iSchool,:));
-      end
-      
-      hold off;
-      xlabel('Age');
-      ylabel('Log wage');
-      output_so1.fig_format(gca);
-      output_so1.fig_save(sprintf('ss%i_wages', iy), saveFigures, cS);
-   end
-end
-
-
-
-%%  Cohort wage and hours profiles
+%%  Cohort wage profiles
 % Each sub-plot is a cohort
 if 1
    figRows = 3;
@@ -112,7 +48,7 @@ if 1
    byShowV = cS.demogS.byShowV;
    nc = length(byShowV);
 
-   for iPlot = 1 : 2
+   for iPlot = 1 : 1
       if iPlot == 1
          % Mean log wage
          yLabelStr = cS.wageStr;
@@ -120,12 +56,13 @@ if 1
          ageRangeV = [min(cS.demogS.workStartAgeV), cS.demogS.ageRetire];
          wageM = tgS.logWage_tscM;
          [yMin, yMax] = output_so1.y_range(wageM(:), cS.missVal);
-      elseif iPlot == 2
-         yLabelStr = 'Mean hours worked';
-         figFn = 'tg_hours';
-         ageRangeV = [min(cS.demogS.workStartAgeV), cS.demogS.ageRetire];
-         wageM = tgS.hours_tscM;
-         [yMin, yMax] = output_so1.y_range(wageM(:), cS.missVal);
+%       elseif iPlot == 2
+%          % no longer created
+%          yLabelStr = 'Mean hours worked';
+%          figFn = 'tg_hours';
+%          ageRangeV = [min(cS.demogS.workStartAgeV), cS.demogS.ageRetire];
+%          wageM = tgS.hours_tscM;
+%          [yMin, yMax] = output_so1.y_range(wageM(:), cS.missVal);
          
       else
          error('Invalid ');
@@ -161,8 +98,9 @@ end
 
 
 %% Cohort schooling
+% School fractions shown elsewhere
 if 1
-   fh = output_so1.fig_new(saveFigures, []);
+   fh = output_so1.fig_new(saveFigures, figS.figOpt2AcrossS);
    idxV = find(tgS.schoolYrMean_cV > 0);
    plot(cS.demogS.bYearV(idxV),  tgS.schoolYrMean_cV(idxV), figS.lineStyleDenseV{1}, 'color', figS.colorM(1,:));
    xlabel('Cohort');

@@ -6,6 +6,11 @@ saveFigures = 1;
 cS = const_data_so1(gNo);
 quartic_so1.model(gNo);
 
+% Table with regression coefficients
+%  currently only "works" with experience polynomial and cohort effects as fct of schooling
+quartic_so1.regr_table(gNo);
+
+% College premium young / old
 quartic_so1.young_old(saveFigures, gNo)
 quartic_so1.age_profiles(saveFigures, gNo)
 quartic_so1.time_effects(saveFigures, gNo)

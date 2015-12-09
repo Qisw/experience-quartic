@@ -12,39 +12,17 @@ tgS = output_so1.var_load(varS.vCalTargets, cS);
 
 %% Levels
 if 1
-   output_so1.fig_new(saveFigures, []);   
-   hold on;
-   
-   for iSchool = 1 : cS.nSchool
-      iLine = iSchool;
-      plot(cS.wageYearV,  tgS.logWage_syM(iSchool,:),  figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine,:));      
-   end
-   
-   hold off;
-   xlabel('Year');
-   ylabel('Log wage');
-   legend(cS.schoolLabelV, 'location', 'southoutside', 'orientation', 'horizontal');
-   output_so1.fig_format(gca, 'line');
+   fh = output_so1.plot_by_school(cS.dataS.yearV, tgS.logWage_syM', 'Year', 'Log wage', saveFigures, cS);
    output_so1.fig_save('aggr_wage', saveFigures, cS);
 end
 
 
 %% Relative to HSG
 if 1
-   output_so1.fig_new(saveFigures, []);   
-   hold on;
+   data_syM = tgS.logWage_syM - repmat(tgS.logWage_syM(cS.iHSG,:), [cS.nSchool, 1]);
+   data_syM(tgS.logWage_syM == cS.missVal) = cS.missVal;
    
-   for iSchool = 1 : cS.nSchool
-      iLine = iSchool;
-      plot(cS.wageYearV,  tgS.logWage_syM(iSchool,:) - tgS.logWage_syM(cS.iHSG,:),  ...
-         figS.lineStyleDenseV{iLine}, 'color', figS.colorM(iLine,:));      
-   end
-   
-   hold off;
-   xlabel('Year');
-   ylabel('Log wage relative to HSG');
-   legend(cS.schoolLabelV, 'location', 'southoutside', 'orientation', 'horizontal');
-   output_so1.fig_format(gca, 'line');
+   fh = output_so1.plot_by_school(cS.dataS.yearV, data_syM', 'Year', 'Log wage relative to HSG', saveFigures, cS);
    output_so1.fig_save('aggr_collprem', saveFigures, cS);
 end
 

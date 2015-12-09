@@ -4,19 +4,22 @@ function run_data_so1(gNo)
 CPS earnings profiles are constructed before this is run
 Only this code should depend on cps data directly
 
-Checked: 
+Checked: 2015-Dec-1
 %}
 % -------------------------------------------------
 
 cS = const_data_so1(gNo);
 saveFigures = 1;
 
+% Set up preamble
+data_so1.preamble_init(cS);
+
 
 
 %% Compute stats from cps data files
 
 % Constant composition weights for aggregates
-data_so1.weights_age_school(gNo);
+% data_so1.weights_age_school(gNo);
 
 % Make fraction in each school group by by
 data_so1.cohort_school(gNo);
@@ -24,9 +27,9 @@ data_so1.cohort_school(gNo);
 % Make a file with cohort age wage profiles
 data_so1.cohort_profiles(gNo);
 
-% Cohort hours or weeks profiles
-data_so1.cohort_hours(gNo)
-data_so1.cohort_hours_show(saveFigures, gNo);
+% % Cohort hours or weeks profiles
+% data_so1.cohort_hours(gNo)
+% data_so1.cohort_hours_show(saveFigures, gNo);
 
 % Summary stats table for cps data
 data_so1.cps_summary_tb(gNo);
@@ -41,9 +44,6 @@ data_so1.cal_targets(gNo);
 
 
 %% Show cal targets 
-
-% Set up preamble
-data_so1.preamble_init(cS);
 
 data_so1.cal_targets_show(saveFigures, gNo);
 data_so1.coll_prem_young_old_show(saveFigures, gNo);
@@ -63,7 +63,7 @@ data_so1.aggr_ls_collprem(saveFigures, gNo);
 
 % Show cross-sectional returns to experience
 %  Better method used in quartic model
-data_so1.cs_returns_show(saveFigures, gNo);
+% data_so1.cs_returns_show(saveFigures, gNo);
 
 % Write preamble
 data_so1.preamble_make(gNo);

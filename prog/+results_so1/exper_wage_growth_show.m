@@ -15,6 +15,7 @@ assert(length(ageV) == 2);
 
 % Show slope and intercept
 for iPlot = 1 : 2
+   fhV = zeros(cS.nSchool, 1);
    for iSchool = 1 : cS.nSchool
       % Compute log wages, both ages, all cohorts
       logWage_tcxM = squeeze(logWage_tscxM(ageV, iSchool, :, :));
@@ -45,7 +46,7 @@ for iPlot = 1 : 2
       
       % *****  Plot
 
-      output_so1.fig_new(saveFigures);
+      fhV(iSchool) = output_so1.fig_new(saveFigures, figS.figOpt2AcrossS);
       hold on;
 
       for iLine = 1 : nx
@@ -55,19 +56,24 @@ for iPlot = 1 : 2
 
       hold off;
       xlabel('Birth year');
-      axisV = axis;
       if iPlot == 1
-         ylabel(sprintf('Change in mean log wage, ages %i to %i', ageV));
-         axis([axisV(1:2), -0.3, 0.65]);  % do not hard code +++
+         ylabel(sprintf('Change in log wage, ages %i to %i', ageV));
       elseif iPlot == 2
          ylabel(sprintf('%s at age %i', cS.wageStr, ageV(1)));
-         % axis([axisV(1:2), 0, 950]);  % do not hard code +++
       end
 
-      legend(legendV, 'location', 'best');
+      if iSchool == 1
+         legend(legendV, 'location', 'best');
+      end
       output_so1.fig_format(gca);
-      output_so1.fig_save(fullfile(outDir, [figFn, '_', cS.schoolSuffixV{iSchool}]), saveFigures, cS);
    end % iSchool
+   
+   figures_lh.axes_same(fhV, []);
+   
+   for iSchool = 1 : cS.nSchool
+      figure(fhV(iSchool));
+      output_so1.fig_save(fullfile(outDir, [figFn, '_', cS.schoolSuffixV{iSchool}]), saveFigures, cS);
+   end
 end % for iPlot
 
    
